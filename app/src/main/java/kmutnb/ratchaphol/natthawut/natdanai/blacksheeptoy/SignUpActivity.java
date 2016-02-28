@@ -2,6 +2,7 @@ package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -25,8 +26,56 @@ public class SignUpActivity extends AppCompatActivity {
         //BindWidget
         bindWidget();
 
+        //Botton Controller
+        buttonController();
+
 
     }//Main Method
+
+    private void buttonController() {
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Get Value From Edit Text
+                nameString = nameEditText.getText().toString().trim();
+                surnameString = surnameEditText.getText().toString().trim();
+                idCardString = idCardEditText.getText().toString().trim();
+                userString = userEditText.getText().toString().trim();
+                passwordString = passwordEditText.getText().toString().trim();
+                emailString = emailEditText.getText().toString().trim();
+                phoneString = phoneEditText.getText().toString().trim();
+
+                //Check Space ห้ามว่างนะ
+                if (checkSpace()) {
+                    //Have Space
+
+                } else {
+                    //No Space
+
+                } //if
+
+
+            }//event
+        });
+
+    }
+
+    private boolean checkSpace() {
+
+        boolean spaceStatus = true;
+
+        spaceStatus = nameString.equals("") ||
+                surnameString.equals("") ||
+                idCardString.equals("") ||
+                userString.equals("") ||
+                passwordString.equals("") ||
+                emailString.equals("") ||
+                phoneString.equals("");
+
+        return spaceStatus;
+    }
 
     private void bindWidget() {
 
