@@ -1,8 +1,20 @@
 <resources>
     <string name="app_name">Black Sheep Toy</string>
 
+
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
+
     <string name="name">ชื่อ </string>
+    <string name="surname">นามสกุล </string>
+    <string name="idcard">หมายเลขบัตรประชาชน </string>
+    <string name="user">ชื่อผู้ใช้ </string>
+    <string name="password">รหัสผ่าน </string>
+    <string name="email">E-mail </string>
+    <string name="phone_number">เบอร์โทรศัพท์ </string>
+
+
+    <string name="regis">Register</string>
+
 
 </resources>

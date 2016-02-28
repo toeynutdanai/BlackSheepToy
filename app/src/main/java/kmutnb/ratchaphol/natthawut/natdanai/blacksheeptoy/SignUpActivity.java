@@ -1,10 +1,23 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -56,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 } else {
                     //No Space
+                    confirmData();
 
                 } //if
 
@@ -64,6 +78,75 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
+
+    private void confirmData() {
+
+        String strN = "\n";
+        String strE = " = ";
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.icon_myaccount);
+        builder.setTitle("โปรดตรวจข้อมูล");
+        builder.setMessage(getResources().getString(R.string.name) + strE + nameString + strN +
+                getResources().getString(R.string.surname) + strE + surnameString + strN +
+                getResources().getString(R.string.idcard) + strE + idCardString + strN +
+                getResources().getString(R.string.user) + strE + userString + strN +
+                getResources().getString(R.string.password) + strE + passwordString + strN +
+                getResources().getString(R.string.email) + strE + emailString + strN +
+                getResources().getString(R.string.phone_number) + strE + phoneString);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                updateToMySQL();
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+
+
+    } //confirm data
+
+    private void updateToMySQL() {
+
+        StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy
+                .Builder().permitAll().build();
+        StrictMode.setThreadPolicy(threadPolicy);
+
+        try {
+
+
+            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            nameValuePairs.add(new BasicNameValuePair("isAdd","true" ));
+            nameValuePairs.add(new BasicNameValuePair("Name",nameString ));
+            nameValuePairs.add(new BasicNameValuePair("Surname",surnameString ));
+            nameValuePairs.add(new BasicNameValuePair("idCard",idCardString ));
+            nameValuePairs.add(new BasicNameValuePair("User",userString ));
+            nameValuePairs.add(new BasicNameValuePair("Password", passwordString ));
+            nameValuePairs.add(new BasicNameValuePair("Email", emailString));
+            nameValuePairs.add(new BasicNameValuePair("Phone", phoneString));
+
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost("http://swiftcodingthai.com/sheep/php_add_user.php");
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+            httpClient.execute(httpPost);
+
+            Toast.makeText(SignUpActivity.this, "บันทึกเรียบร้อยแล้ว ขอบคุณค่ะ", Toast.LENGTH_SHORT).show();
+            finish();
+
+
+        } catch (Exception e) {
+            Toast.makeText(SignUpActivity.this, "ไม่สามารถบันทึกได้", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }// updateToMySQL
 
     private boolean checkSpace() {
 
