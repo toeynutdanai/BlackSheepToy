@@ -50,6 +50,9 @@ public class SignUpActivity extends AppCompatActivity {
                 //Check Space ห้ามว่างนะ
                 if (checkSpace()) {
                     //Have Space
+                    MyAlertDialog myAlertDialog = new MyAlertDialog();
+                    myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
+                            "มีช่องว่าง", "กรุณากรอกทุกช่องด้วยค่ะ");
 
                 } else {
                     //No Space
