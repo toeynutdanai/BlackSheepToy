@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Black Sheep Toy</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">ชื่อ </string>
+
 </resources>
