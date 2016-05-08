@@ -100,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
             //Check Password
             if (passwordString.equals(cursor.getString(5))) {
                 Toast.makeText(this, "ยินดีต้อนรับ" + cursor.getString(1), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, ToyListView.class);
+                intent.putExtra("ID_User", cursor.getString(0));
+                startActivity(intent);
+                finish();
+
             } else {
 
                 MyAlertDialog myAlertDialog = new MyAlertDialog();
