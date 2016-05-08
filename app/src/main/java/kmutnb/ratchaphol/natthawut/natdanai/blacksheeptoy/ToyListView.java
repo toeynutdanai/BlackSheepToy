@@ -97,6 +97,10 @@ public class ToyListView extends AppCompatActivity {
 
         if (checkOrder()) {
             //have data
+            Intent intent = new Intent(ToyListView.this, OrderToy.class);
+            intent.putExtra("ID_User", strID);
+            startActivity(intent);
+
 
         } else {
             //no data

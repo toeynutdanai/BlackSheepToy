@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ToyDetail extends AppCompatActivity {
 
@@ -127,6 +132,16 @@ public class ToyDetail extends AppCompatActivity {
 
     public void clickOrderDetail(View view) {
 
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String strDate = dateFormat.format(date);
+
+        MyManage myManage = new MyManage(this);
+        myManage.addOrder(idString, strDate, "n/a", nameString, priceString);
+
+        Toast.makeText(this, "บันทึก" + nameString + "แล้ว", Toast.LENGTH_SHORT).show();
+
+        finish();
     }
 
 
