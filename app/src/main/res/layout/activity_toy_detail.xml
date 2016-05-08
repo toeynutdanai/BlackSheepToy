@@ -125,7 +125,8 @@
             android:id="@+id/button4"
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/h2"
-            android:background="#e3f7ae49" />
+            android:background="#e3f7ae49"
+            android:onClick="clickDEC" />
 
         <Button
             android:layout_width="wrap_content"
@@ -135,7 +136,8 @@
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/h2"
             android:background="#e3f7ae49"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:onClick="clickINC" />
     </LinearLayout>
 
     <LinearLayout
@@ -157,7 +159,8 @@
             android:id="@+id/button6"
             android:layout_weight="1"
             android:nestedScrollingEnabled="false"
-            android:background="#ddf9c804" />
+            android:background="#ddf9c804"
+            android:onClick="clickCancelDetail" />
 
         <Button
             android:layout_width="wrap_content"
@@ -166,7 +169,8 @@
             android:id="@+id/button7"
             android:layout_weight="1"
             android:background="#ddf9c804"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:onClick="clickOrderDetail" />
     </LinearLayout>
 
     <ScrollView
