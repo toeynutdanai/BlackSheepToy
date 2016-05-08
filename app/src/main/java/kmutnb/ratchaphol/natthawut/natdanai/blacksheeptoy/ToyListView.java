@@ -94,6 +94,33 @@ public class ToyListView extends AppCompatActivity {
 
     public void clickReadOrder(View view) {
 
+
+        if (checkOrder()) {
+            //have data
+
+        } else {
+            //no data
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
+                    "ยังไม่มี Order" , "โปรดเลือกสินค้า");
+
+        }
+
     }// clickReadOrder
+
+    private boolean checkOrder() {
+
+        boolean result = true;
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,MODE_PRIVATE,null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + MyManage.order_table,null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount() == 0) {
+            result = false;
+
+        }
+
+        return result;
+    }
 
 } // Main Class
