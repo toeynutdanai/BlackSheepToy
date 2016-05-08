@@ -1,14 +1,18 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.AvoidXfermode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class ToyListView extends AppCompatActivity {
+
+    private String strID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,8 @@ public class ToyListView extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
+        strID = getIntent().getStringExtra("ID_User");
+
         //Read All productTABLE
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
@@ -24,17 +30,17 @@ public class ToyListView extends AppCompatActivity {
         cursor.moveToFirst();
         int intCount = cursor.getCount();
 
-        String[] nameStrings = new String[intCount];
-        String[] brandStrings = new String[intCount];
-        String[] priceStrings = new String[intCount];
-        String[] stockStrings = new String[intCount];
-        String[] usedStrings = new String[intCount];
-        String[] detailStrings = new String[intCount];
-        String[] image1String = new String[intCount];
-        String[] image2String = new String[intCount];
-        String[] image3String = new String[intCount];
-        String[] image4String = new String[intCount];
-        String[] image5String = new String[intCount];
+        final String[] nameStrings = new String[intCount];
+        final String[] brandStrings = new String[intCount];
+        final String[] priceStrings = new String[intCount];
+        final String[] stockStrings = new String[intCount];
+        final String[] usedStrings = new String[intCount];
+        final String[] detailStrings = new String[intCount];
+        final String[] image1String = new String[intCount];
+        final String[] image2String = new String[intCount];
+        final String[] image3String = new String[intCount];
+        final String[] image4String = new String[intCount];
+        final String[] image5String = new String[intCount];
 
         for (int i = 0; i < intCount; i++) {
 
@@ -58,6 +64,31 @@ public class ToyListView extends AppCompatActivity {
         ToyAdapter toyAdapter = new ToyAdapter(this, nameStrings, brandStrings, priceStrings, stockStrings,
                 usedStrings, detailStrings, image1String);
         listView.setAdapter(toyAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                Intent intent = new Intent(ToyListView.this, ToyDetail.class);
+
+                intent.putExtra("ID_User", strID);
+                intent.putExtra("Name", nameStrings[i]);
+                intent.putExtra("Brand", brandStrings[i]);
+                intent.putExtra("Price", priceStrings[i]);
+                intent.putExtra("Stock", stockStrings[i]);
+                intent.putExtra("Used", usedStrings[i]);
+                intent.putExtra("Detail", detailStrings[i]);
+                intent.putExtra("Image1", image1String[i]);
+                intent.putExtra("Image2", image2String[i]);
+                intent.putExtra("Image3", image3String[i]);
+                intent.putExtra("Image4", image4String[i]);
+                intent.putExtra("Image5", image5String[i]);
+
+                startActivity(intent);
+
+            } //onItemClick
+        });
 
     } // Main Method
 
