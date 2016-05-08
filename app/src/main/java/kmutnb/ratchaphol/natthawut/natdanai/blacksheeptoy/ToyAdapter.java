@@ -69,10 +69,10 @@ public class ToyAdapter extends BaseAdapter {
         ImageView imageView = (ImageView) view1.findViewById(R.id.imageView2);
 
         nameTextView.setText(nameStrings[i]);
-        brandTextView.setText(brandStrings[i]);
-        priceTextView.setText(priceStrings[i]);
-        stockTextView.setText(stockStrings[i]);
-        usedTextView.setText(usedStrings[i]);
+        brandTextView.setText("Brand : " + brandStrings[i]);
+        priceTextView.setText("Price : " + priceStrings[i]);
+        stockTextView.setText("Stock : " + stockStrings[i]);
+        usedTextView.setText("Status : " + usedStrings[i]);
         detailTextView.setText(detailStrings[i]);
 
         Picasso.with(context).load(image1Strings[i]).resize(120,120).into(imageView);
