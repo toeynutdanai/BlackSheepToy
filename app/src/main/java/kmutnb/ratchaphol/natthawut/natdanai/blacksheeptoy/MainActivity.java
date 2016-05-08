@@ -1,6 +1,7 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.StrictMode;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -57,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
     } //Main Method
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        deleteAllSQLite();
+        synJSON();
+
+    }
+
     public void clickSignIn(View view) {
 
         userString = userEditText.getText().toString().trim();
@@ -83,6 +94,19 @@ public class MainActivity extends AppCompatActivity {
 
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE User = " + "'" + userString + "'", null);
+            cursor.moveToFirst();
+
+            //Check Password
+            if (passwordString.equals(cursor.getString(5))) {
+                Toast.makeText(this, "ยินดีต้อนรับ" + cursor.getString(1), Toast.LENGTH_SHORT).show();
+            } else {
+
+                MyAlertDialog myAlertDialog = new MyAlertDialog();
+                myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
+                        "Password False", "Please Try Again Password False");
+
+            }
 
         } catch (Exception e) {
             MyAlertDialog myAlertDialog = new MyAlertDialog();
