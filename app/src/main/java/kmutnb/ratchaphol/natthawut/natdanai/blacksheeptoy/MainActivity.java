@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                     switch (intTABLE) {
                         case 0:
 
+                            String strID = jsonObject.getString("id");
                             String strName = jsonObject.getString(MyManage.column_Name);
                             String strSurname = jsonObject.getString(MyManage.column_Surname);
                             String strIDcard = jsonObject.getString(MyManage.column_idCard);
@@ -174,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
                             String strEmail = jsonObject.getString(MyManage.column_Email);
                             String strPhone = jsonObject.getString(MyManage.column_Phone);
 
-                            myManage.addUser(strName, strSurname, strIDcard, strUser, strPassword, strEmail, strPhone);
+                            myManage.addUser(strID, strName, strSurname, strIDcard, strUser,
+                                    strPassword, strEmail, strPhone);
                             break;
                         case 1:
 
@@ -214,10 +216,11 @@ public class MainActivity extends AppCompatActivity {
                 MODE_PRIVATE, null);
         sqLiteDatabase.delete(MyManage.product_table, null, null);
         sqLiteDatabase.delete(MyManage.user_table, null, null);
+        sqLiteDatabase.delete(MyManage.order_table, null, null);
     }
 
     private void testAdd() {
-        myManage.addUser("name", "sur", "idcard", "user", "pass", "email", "phone");
+        myManage.addUser("id", "name", "sur", "idcard", "user", "pass", "email", "phone");
         myManage.addProduct("name", "brand", "price", "stock", "used",
                 "detail", "image1", "image2", "image3", "image4", "image5");
     }

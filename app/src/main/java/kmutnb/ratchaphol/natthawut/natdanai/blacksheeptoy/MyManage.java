@@ -36,6 +36,12 @@ public class MyManage {
     public static final String column_Image4 = "Image4";
     public static final String column_Image5 = "Image5";
 
+    public static final String order_table = "orderTABLE";
+    public static final String colunm_IDuser = "ID_User";
+    public static final String colunm_Date = "Date";
+    public static final String colunm_Product = "Product";
+    public static final String colunm_SentTo = "Sent_To";
+
     public MyManage(Context context) {
 
         myOpenHelper = new MyOpenHelper(context);
@@ -43,6 +49,23 @@ public class MyManage {
 
 
     } //Constructor
+
+    public long addOrder(String strID_User,
+                         String strDate,
+                         String strSent_To,
+                         String strProduct,
+                         String strPrice) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(colunm_IDuser, strID_User);
+        contentValues.put(colunm_Date, strDate);
+        contentValues.put(colunm_SentTo, strSent_To);
+        contentValues.put(colunm_Product, strProduct);
+        contentValues.put(column_Price, strPrice);
+
+
+
+        return sqLiteDatabase.insert(order_table, null, contentValues);
+    }
 
     public long addProduct(String strName,
                            String strBrand,
@@ -71,7 +94,8 @@ public class MyManage {
     }
 
 
-    public long addUser(String strName,
+    public long addUser(String strID,
+                        String strName,
                         String strSurname,
                         String strIDcard,
                         String strUser,
@@ -79,6 +103,7 @@ public class MyManage {
                         String strEmail,
                         String strPhone) {
         ContentValues contentValues = new ContentValues();
+        contentValues.put(column_id, strID);
         contentValues.put(column_Name, strName);
         contentValues.put(column_Surname, strSurname);
         contentValues.put(column_idCard, strIDcard);

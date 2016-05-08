@@ -19,6 +19,7 @@ public class ToyDetail extends AppCompatActivity {
             usedString, stockString, detailString, image1String, image2String, image3String, image4String,
             image5String;
     private String[] imageStrings;
+    private int indexAnInt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class ToyDetail extends AppCompatActivity {
     } //Main Method
 
     private void changeImage(String imageString) {
-        Picasso.with(this).load(imageString).resize(200,200).into(imageView);
+        Picasso.with(this).load(imageString).resize(150,200).into(imageView);
 
 
     }//change image
@@ -50,7 +51,7 @@ public class ToyDetail extends AppCompatActivity {
         nameTextView.setText(nameString);
         brandTextView.setText(brandString);
         priceTextView.setText(priceString);
-        usedTextView.setText(usedString);
+        usedTextView.setText(findUsed(usedString));
         stockTextView.setText(stockString);
         detailTextView.setText(detailString);
 
@@ -58,6 +59,14 @@ public class ToyDetail extends AppCompatActivity {
 
 
     }//ShowView
+
+    private String findUsed(String usedString) {
+
+        String[] resultStrings = {"", "มือ 1", "มือ 2"};
+        int index = Integer.parseInt(usedString);
+
+        return resultStrings[index];
+    };
 
     private void recieveValue() {
 
@@ -93,13 +102,26 @@ public class ToyDetail extends AppCompatActivity {
 
     public void clickDEC(View view) {
 
+        indexAnInt -= 1;
+        if (indexAnInt < 0) {
+            indexAnInt = 4;
+        }
+        changeImage(imageStrings[indexAnInt]);
+
     }
 
     public void clickINC(View view) {
 
+        indexAnInt += 1;
+        if (indexAnInt >= 5 ) {
+            indexAnInt = 0;
+        }
+        changeImage(imageStrings[indexAnInt]);
     }
 
     public void clickCancelDetail(View view) {
+
+        finish();
 
     }
 

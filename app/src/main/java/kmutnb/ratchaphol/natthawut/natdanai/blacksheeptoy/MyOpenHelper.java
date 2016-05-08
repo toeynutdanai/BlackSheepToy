@@ -37,6 +37,15 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "Image4 text," +
             "Image5 text);";
 
+    private static final String create_order_table = "create table orderTABLE (" +
+            "_id integer primary key," +
+            "ID_User text," +
+            "Date text," +
+            "Sent_To text," +
+            "Product text," +
+            "Price text);";
+
+
 
 
     public MyOpenHelper(Context context) {
@@ -47,6 +56,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(create_product_table);
         sqLiteDatabase.execSQL(create_user_table);
+        sqLiteDatabase.execSQL(create_order_table);
 
     }
 

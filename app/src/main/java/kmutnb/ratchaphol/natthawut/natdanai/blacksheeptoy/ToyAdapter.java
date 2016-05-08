@@ -75,7 +75,7 @@ public class ToyAdapter extends BaseAdapter {
         usedTextView.setText("Status : " + usedStrings[i]);
         detailTextView.setText(detailStrings[i]);
 
-        Picasso.with(context).load(image1Strings[i]).resize(120,120).into(imageView);
+        Picasso.with(context).load(image1Strings[i]).resize(90,120).into(imageView);
 
         return view1;
     }

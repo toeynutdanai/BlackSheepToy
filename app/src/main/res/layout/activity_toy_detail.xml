@@ -102,7 +102,7 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="200dp"
         android:id="@+id/imageView2"
         android:layout_below="@+id/linearLayout2"
