@@ -1,5 +1,7 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -130,18 +132,63 @@ public class ToyDetail extends AppCompatActivity {
 
     }
 
-    public void clickOrderDetail(View view) {
+    //public void clickOrderDetail(View view) { ของเก่ารอมาแก้
+        public void clickOrderDetail(View view) {
 
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        String strDate = dateFormat.format(date);
+        //if (checkProduct(nameString) || checkOrderTABLE()) { รอมาแก้
+            if (true) {
+            //True สั่งได้
 
-        MyManage myManage = new MyManage(this);
-        myManage.addOrder(idString, strDate, "n/a", nameString, priceString);
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date();
+            String strDate = dateFormat.format(date);
 
-        Toast.makeText(this, "บันทึก" + nameString + "แล้ว", Toast.LENGTH_SHORT).show();
+            MyManage myManage = new MyManage(this);
+            myManage.addOrder(idString, strDate, "n/a", nameString, priceString);
 
-        finish();
+            Toast.makeText(this, "บันทึก" + nameString + "แล้ว", Toast.LENGTH_SHORT).show();
+
+            finish();
+        } else {
+            //False สั่งไม่ได้
+
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.myDialog(this,R.drawable.icon_myaccount,
+                    "ไม่สามารถสั่งซื้อได้" , "มีสินค้าอยู่ในตะกร้าแล้ว");
+        }
+    } //clickOrderdetail
+
+    private boolean checkOrderTABLE() {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE", null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    private boolean checkProduct(String nameString) {
+        try {
+
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                    MODE_PRIVATE, null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = " + "'" + nameString + "'", null);
+            cursor.moveToFirst();
+
+            return false;
+
+        } catch (Exception e) {
+            return true;
+
+        }
+
+
     }
 
 

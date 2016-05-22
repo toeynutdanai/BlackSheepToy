@@ -1,29 +1,38 @@
-package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
+package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class OrderToy extends AppCompatActivity {
 
     //Explicit
-    private String idString, dateString, recieveNoString;
-    private TextView nameUserTextView, surnameTextView, dateTextView,
-            recieveNoTextView, totalTextView;
-
-    private String[] useStrings;
+    private String idString, dateString, receiveNoString, addressString;
+    private TextView nameUserTextView, surnameTextView,
+            dateTextView, receiveNoTextView, totalTextView;
+    private String[] userStrings;
     private ListView listView;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,40 +40,39 @@ public class OrderToy extends AppCompatActivity {
         setContentView(R.layout.activity_order_toy);
 
         //Bind Widget
-        BindWidget();
+        bindWidget();
 
-        //find NameSurname
+        //find Name Surname
         findNameSurname();
 
         //Find Date
         findDate();
 
         //Find receiveNo
-        findRecieveNo();
+        findReceiveNo();
 
-
-        //Create Listview
+        //Create ListView
         createListView();
 
-    } // Main Method
 
-    private void findRecieveNo() {
+    }   // Main Method
+
+    private void findReceiveNo() {
 
         String[] resultStrings = dateString.split("/");
-        recieveNoString = "Ref-" +
-                useStrings[4] + "-" +
+        receiveNoString = "Ref-" +
+                userStrings[4] + "-" +
                 resultStrings[0] + "-" +
                 resultStrings[1] + "-" +
                 resultStrings[2];
 
-        recieveNoTextView.setText(recieveNoString);
-
+        receiveNoTextView.setText(receiveNoString);
 
     }
 
     private void createListView() {
 
-        int intTotal = 0;
+        int intTotel = 0;
 
         final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
@@ -75,21 +83,19 @@ public class OrderToy extends AppCompatActivity {
         String[] priceStrings = new String[cursor.getCount()];
         int[] priceInts = new int[cursor.getCount()];
 
-        for (int i = 0; i < cursor.getCount(); i++) {
+        for (int i=0;i<cursor.getCount();i++) {
 
             productStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.colunm_Product));
             priceStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Price));
             priceInts[i] = Integer.parseInt(priceStrings[i]);
 
-            intTotal = intTotal + priceInts[i];
+            intTotel = intTotel + priceInts[i];
 
             cursor.moveToNext();
-
-        }//for
+        }   // for
         cursor.close();
 
-        totalTextView.setText(Integer.toString(intTotal));
-
+        totalTextView.setText(Integer.toString(intTotel));
 
         ReceiveAdapter receiveAdapter = new ReceiveAdapter(this,
                 productStrings, priceStrings);
@@ -106,16 +112,15 @@ public class OrderToy extends AppCompatActivity {
 
                 cursor.moveToPosition(i);
                 int intID = Integer.parseInt(cursor.getString(0));
-                Log.d("22MayV2", "intID ==>" + intID);
+                Log.d("22MayV2", "intID ==> " + intID);
 
                 sqLiteDatabase.delete("orderTABLE", "_id = " + intID, null);
                 createListView();
 
-            } //onItem
+            }   // onItem
         });
         cursor.close();
-
-    }//create listview
+    }   // createListView
 
     private void findDate() {
 
@@ -133,27 +138,27 @@ public class OrderToy extends AppCompatActivity {
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE _id = " + "'" + idString + "'", null);
         cursor.moveToFirst();
 
-        useStrings = new String[cursor.getColumnCount()];
-        for (int i = 0; i < cursor.getColumnCount(); i++) {
-            useStrings[i] = cursor.getString(i);
-        } //for
+        userStrings = new String[cursor.getColumnCount()];
+        for (int i=0;i<cursor.getColumnCount();i++) {
+            userStrings[i] = cursor.getString(i);
+        }   // for
 
-        nameUserTextView.setText(useStrings[1]);
-        surnameTextView.setText(useStrings[2]);
+        nameUserTextView.setText(userStrings[1]);
+        surnameTextView.setText(userStrings[2]);
 
-    } //findNameSurname
+    }   // findNameSurname
 
-    private void BindWidget() {
+    private void bindWidget() {
         nameUserTextView = (TextView) findViewById(R.id.textView16);
         surnameTextView = (TextView) findViewById(R.id.textView17);
         dateTextView = (TextView) findViewById(R.id.textView15);
         listView = (ListView) findViewById(R.id.listView2);
-        recieveNoTextView = (TextView) findViewById(R.id.textView23);
+        receiveNoTextView = (TextView) findViewById(R.id.textView23);
         totalTextView = (TextView) findViewById(R.id.textView19);
+        editText = (EditText) findViewById(R.id.editText8);
     }
 
     public void clickAddMore(View view) {
@@ -162,6 +167,63 @@ public class OrderToy extends AppCompatActivity {
 
     public void clickCheckBill(View view) {
 
-    }
+        addressString = editText.getText().toString().trim();
 
-} // Main Calss
+        if (addressString.equals("")) {
+            //Not Fill Address
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
+                    "ส่งที่ไหน ?", "โปรดระบุสถานที่ส่งของด้วยคะ");
+        } else {
+            //Have Address
+            uploadOrderToServer();
+        }
+
+    }   // clickCheckBill
+
+    private void uploadOrderToServer() {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE", null);
+        cursor.moveToFirst();
+
+        String[] productStrings = new String[cursor.getCount()];
+        String[] priceStrings = new String[cursor.getCount()];
+
+        for (int i=0;i<cursor.getCount();i++) {
+
+            String strURL = "http://swiftcodingthai.com/sheep/add_order.php";
+            OkHttpClient okHttpClient = new OkHttpClient();
+            RequestBody requestBody = new FormEncodingBuilder()
+                    .add("isAdd", "true")
+                    .add("Ref", receiveNoString)
+                    .add("Date", dateString)
+                    .add("Name", userStrings[1])
+                    .add("Surname", userStrings[2])
+                    .add("Address", addressString)
+                    .add("Product", cursor.getString(cursor.getColumnIndex(MyManage.colunm_Product)))
+                    .add("Price", cursor.getString(cursor.getColumnIndex(MyManage.column_Price)))
+                    .build();
+            Request.Builder builder = new Request.Builder();
+            Request request = builder.url(strURL).post(requestBody).build();
+            Call call = okHttpClient.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Response response) throws IOException {
+                    finish();
+                }
+            });
+
+
+            cursor.moveToNext();
+        }   //for
+
+    }   // upload
+
+}   // Main Class
