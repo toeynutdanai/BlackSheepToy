@@ -8,6 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class OrderToy extends AppCompatActivity {
 
     //Explicit
@@ -28,7 +33,20 @@ public class OrderToy extends AppCompatActivity {
         //find NameSurname
         findNameSurname();
 
+        //Find Date
+        findDate();
+
     } // Main Method
+
+    private void findDate() {
+
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateString = dateFormat.format(date);
+        Log.d("22MayV1", "dateString ==> " + dateString);
+        dateTextView.setText(dateString);
+
+    }
 
     private void findNameSurname() {
         idString = getIntent().getStringExtra("ID_User");
