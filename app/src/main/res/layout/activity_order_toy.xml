@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:weightSum="1"
         android:id="@+id/linearLayout9"
-        android:layout_below="@+id/linearLayout6"
+        android:layout_below="@+id/linearLayout11"
         android:layout_alignLeft="@+id/linearLayout7"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -183,13 +183,70 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView2"
-        android:layout_below="@+id/linearLayout9"
+        android:layout_below="@+id/linearLayout12"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_above="@+id/linearLayout8"
         android:background="#82ffffff" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout11"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#82ffffff"
+        android:layout_below="@+id/linearLayout6">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView22"
+            android:text="Bill No. : "
+            android:textColor="#e21c1919"
+            android:textSize="@dimen/h2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView23"
+            android:textColor="#e21c1919"
+            android:textSize="@dimen/h2"
+            android:layout_gravity="top" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout12"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#82ffffff"
+        android:layout_below="@+id/linearLayout9">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView24"
+            android:text="Product : "
+            android:textColor="#e21c1919"
+            android:textSize="@dimen/h2"
+            android:layout_weight="2" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView25"
+            android:textColor="#e21c1919"
+            android:textSize="@dimen/h2"
+            android:layout_gravity="top"
+            android:text="Price"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 </RelativeLayout>
 
