@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class ToyDetail extends AppCompatActivity {
     private TextView nameTextView, brandTextView, priceTextView, usedTextView,
             stockTextView, detailTextView;
 
+    private SeekBar seekBar;
     private ImageView imageView;
     private String idString, nameString, brandString, priceString,
             usedString, stockString, detailString, image1String, image2String, image3String, image4String,
@@ -45,9 +47,36 @@ public class ToyDetail extends AppCompatActivity {
         //Change Image
         changeImage(imageStrings[0]);
 
+        //seekbar
+        changeSeekbar();
+
     } //Main Method
 
+    private void changeSeekbar() {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                indexAnInt = i;
+
+                changeImage(imageStrings[indexAnInt]);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
     private void changeImage(String imageString) {
+
+
+
         Picasso.with(this).load(imageString).resize(150,200).into(imageView);
 
 
@@ -69,11 +98,11 @@ public class ToyDetail extends AppCompatActivity {
 
     private String findUsed(String usedString) {
 
-        String[] resultStrings = {"", "มือ 1", "มือ 2"};
-        int index = Integer.parseInt(usedString);
+    String[] resultStrings = {"", "มือ 1", "มือ 2"};
+    int index = Integer.parseInt(usedString);
 
-        return resultStrings[index];
-    };
+    return resultStrings[index];
+    }; //กำหนดมือ 1 มือ 2
 
     private void recieveValue() {
 
@@ -132,11 +161,15 @@ public class ToyDetail extends AppCompatActivity {
         stockTextView = (TextView) findViewById(R.id.textView14);
         detailTextView = (TextView) findViewById(R.id.editText5);
         imageView = (ImageView) findViewById(R.id.imageView2);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+
 
 
     }
 
-    public void clickDEC(View view) {
+
+
+    /* public void clickDEC(View view) {
 
         indexAnInt -= 1;
         if (indexAnInt < 0) {
@@ -144,7 +177,7 @@ public class ToyDetail extends AppCompatActivity {
         }
         changeImage(imageStrings[indexAnInt]);
 
-    }
+    }//ลด
 
     public void clickINC(View view) {
 
@@ -153,7 +186,7 @@ public class ToyDetail extends AppCompatActivity {
             indexAnInt = 0;
         }
         changeImage(imageStrings[indexAnInt]);
-    }
+    }//เพิ่ม */
 
     public void clickCancelDetail(View view) {
 

@@ -109,36 +109,14 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="15dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignWithParentIfMissing="false"
+        android:id="@+id/seekBar"
         android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout3">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="&lt;&lt;&lt;"
-            android:id="@+id/button4"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/h2"
-            android:background="#e3f7ae49"
-            android:onClick="clickDEC" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=">>>"
-            android:id="@+id/button5"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/h2"
-            android:background="#e3f7ae49"
-            android:layout_marginLeft="5dp"
-            android:onClick="clickINC" />
-    </LinearLayout>
+        android:layout_margin="5dp"
+        android:max="31"
+        android:progress="0" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -177,14 +155,14 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:id="@+id/scrollView"
-        android:layout_below="@+id/linearLayout3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/linearLayout4"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="5dp" >
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/seekBar">
 
         <TextView
             android:layout_width="wrap_content"
