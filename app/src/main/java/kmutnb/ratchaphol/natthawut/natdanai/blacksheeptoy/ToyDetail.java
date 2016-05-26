@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -29,6 +30,7 @@ public class ToyDetail extends AppCompatActivity {
             image5String;
     private String[] imageStrings;
     private int indexAnInt = 0;
+    private int xn = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,51 @@ public class ToyDetail extends AppCompatActivity {
         //seekbar
         changeSeekbar();
 
+        //touchscreen
+        touchScreen();
+
     } //Main Method
+
+    private void touchScreen() {
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                Float x,xmove,xup;
+                x = motionEvent.getX(motionEvent.ACTION_DOWN);
+                xmove = motionEvent.getX();
+                xup = motionEvent.getX(motionEvent.ACTION_UP);
+
+
+
+
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_MOVE:
+
+                        indexAnInt = Math.round(xmove)/15;
+                        if (indexAnInt < 0) {
+                            indexAnInt = 31;
+                        }
+                        if (indexAnInt >= 32) {
+                            indexAnInt = 0;
+                        }
+                        changeImage(imageStrings[indexAnInt]);
+
+
+
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+
+                        break;
+                    case MotionEvent.ACTION_UP:
+
+                        break;
+                }
+
+                return true;
+            }
+        });
+    }
 
     private void changeSeekbar() {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -72,6 +118,8 @@ public class ToyDetail extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void changeImage(String imageString) {
 
