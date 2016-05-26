@@ -18,7 +18,7 @@ public class ToyAdapter extends BaseAdapter {
     //Explicit
     private Context context;
     private String[] nameStrings, brandStrings, priceStrings, stockStrings, usedStrings,
-            detailStrings, image1Strings, image2Strings, image3Strings, image4Strings, image5Strings;
+            detailStrings, image1Strings ;
 
     public ToyAdapter(Context context,
                       String[] nameStrings,

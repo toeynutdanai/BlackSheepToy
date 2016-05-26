@@ -191,9 +191,40 @@ public class MainActivity extends AppCompatActivity {
                             String strImage3 = jsonObject.getString(MyManage.column_Image3);
                             String strImage4 = jsonObject.getString(MyManage.column_Image4);
                             String strImage5 = jsonObject.getString(MyManage.column_Image5);
+                            String strImage6 = jsonObject.getString(MyManage.column_Image6);
+                            String strImage7 = jsonObject.getString(MyManage.column_Image7);
+                            String strImage8 = jsonObject.getString(MyManage.column_Image8);
+                            String strImage9 = jsonObject.getString(MyManage.column_Image9);
+                            String strImage10 = jsonObject.getString(MyManage.column_Image10);
+                            String strImage11 = jsonObject.getString(MyManage.column_Image11);
+                            String strImage12 = jsonObject.getString(MyManage.column_Image12);
+                            String strImage13 = jsonObject.getString(MyManage.column_Image13);
+                            String strImage14 = jsonObject.getString(MyManage.column_Image14);
+                            String strImage15 = jsonObject.getString(MyManage.column_Image15);
+                            String strImage16 = jsonObject.getString(MyManage.column_Image16);
+                            String strImage17 = jsonObject.getString(MyManage.column_Image17);
+                            String strImage18 = jsonObject.getString(MyManage.column_Image18);
+                            String strImage19 = jsonObject.getString(MyManage.column_Image19);
+                            String strImage20 = jsonObject.getString(MyManage.column_Image20);
+                            String strImage21 = jsonObject.getString(MyManage.column_Image21);
+                            String strImage22 = jsonObject.getString(MyManage.column_Image22);
+                            String strImage23 = jsonObject.getString(MyManage.column_Image23);
+                            String strImage24 = jsonObject.getString(MyManage.column_Image24);
+                            String strImage25 = jsonObject.getString(MyManage.column_Image25);
+                            String strImage26 = jsonObject.getString(MyManage.column_Image26);
+                            String strImage27 = jsonObject.getString(MyManage.column_Image27);
+                            String strImage28 = jsonObject.getString(MyManage.column_Image28);
+                            String strImage29 = jsonObject.getString(MyManage.column_Image29);
+                            String strImage30 = jsonObject.getString(MyManage.column_Image30);
+                            String strImage31 = jsonObject.getString(MyManage.column_Image31);
+                            String strImage32 = jsonObject.getString(MyManage.column_Image32);
 
                             myManage.addProduct(strNameProduct, strBrand, strPrice, strStock, strUsed, strDetail, strImage1,
-                                    strImage2, strImage3, strImage4, strImage5);
+                                    strImage2, strImage3, strImage4, strImage5, strImage6, strImage7, strImage8,
+                                    strImage9, strImage10, strImage11, strImage12, strImage13, strImage14, strImage15,
+                                    strImage16, strImage17, strImage18, strImage19, strImage20, strImage21, strImage22,
+                                    strImage23, strImage24, strImage25, strImage26, strImage27, strImage28, strImage29,
+                                    strImage30, strImage31, strImage32);
 
                             break;
                     } // switch
@@ -222,7 +253,11 @@ public class MainActivity extends AppCompatActivity {
     private void testAdd() {
         myManage.addUser("id", "name", "sur", "idcard", "user", "pass", "email", "phone");
         myManage.addProduct("name", "brand", "price", "stock", "used",
-                "detail", "image1", "image2", "image3", "image4", "image5");
+                "detail", "image1", "image2", "image3", "image4", "image5","image6","image7",
+                "image8","image9","image10","image11","image12","image13","image14","image15",
+                "image16","image17","image18","image19","image20","image21","image22","image23",
+                "image24","image25","image26","image27","image28","image29","image30","image31",
+                "image32");
     }
 
     public void clickSignUp(View view) {

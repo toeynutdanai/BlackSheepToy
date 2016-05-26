@@ -85,12 +85,41 @@ public class ToyDetail extends AppCompatActivity {
         stockString = getIntent().getStringExtra("Stock");
         detailString = getIntent().getStringExtra("Detail");
 
-        imageStrings = new String[5];
+        imageStrings = new String[32];
         imageStrings[0] = getIntent().getStringExtra("Image1");
         imageStrings[1] = getIntent().getStringExtra("Image2");
         imageStrings[2] = getIntent().getStringExtra("Image3");
         imageStrings[3] = getIntent().getStringExtra("Image4");
         imageStrings[4] = getIntent().getStringExtra("Image5");
+        imageStrings[5] = getIntent().getStringExtra("Image6");
+        imageStrings[6] = getIntent().getStringExtra("Image7");
+        imageStrings[7] = getIntent().getStringExtra("Image8");
+        imageStrings[8] = getIntent().getStringExtra("Image9");
+        imageStrings[9] = getIntent().getStringExtra("Image10");
+        imageStrings[10] = getIntent().getStringExtra("Image11");
+        imageStrings[11] = getIntent().getStringExtra("Image12");
+        imageStrings[12] = getIntent().getStringExtra("Image13");
+        imageStrings[13] = getIntent().getStringExtra("Image14");
+        imageStrings[14] = getIntent().getStringExtra("Image15");
+        imageStrings[15] = getIntent().getStringExtra("Image16");
+        imageStrings[16] = getIntent().getStringExtra("Image17");
+        imageStrings[17] = getIntent().getStringExtra("Image18");
+        imageStrings[18] = getIntent().getStringExtra("Image19");
+        imageStrings[19] = getIntent().getStringExtra("Image20");
+        imageStrings[20] = getIntent().getStringExtra("Image21");
+        imageStrings[21] = getIntent().getStringExtra("Image22");
+        imageStrings[22] = getIntent().getStringExtra("Image23");
+        imageStrings[23] = getIntent().getStringExtra("Image24");
+        imageStrings[24] = getIntent().getStringExtra("Image25");
+        imageStrings[25] = getIntent().getStringExtra("Image26");
+        imageStrings[26] = getIntent().getStringExtra("Image27");
+        imageStrings[27] = getIntent().getStringExtra("Image28");
+        imageStrings[28] = getIntent().getStringExtra("Image29");
+        imageStrings[29] = getIntent().getStringExtra("Image30");
+        imageStrings[30] = getIntent().getStringExtra("Image31");
+        imageStrings[31] = getIntent().getStringExtra("Image32");
+
+
 
     }//RecieveValue
 
@@ -111,7 +140,7 @@ public class ToyDetail extends AppCompatActivity {
 
         indexAnInt -= 1;
         if (indexAnInt < 0) {
-            indexAnInt = 4;
+            indexAnInt = 31;
         }
         changeImage(imageStrings[indexAnInt]);
 
@@ -120,7 +149,7 @@ public class ToyDetail extends AppCompatActivity {
     public void clickINC(View view) {
 
         indexAnInt += 1;
-        if (indexAnInt >= 5 ) {
+        if (indexAnInt >= 32 ) {
             indexAnInt = 0;
         }
         changeImage(imageStrings[indexAnInt]);

@@ -35,6 +35,33 @@ public class MyManage {
     public static final String column_Image3 = "Image3";
     public static final String column_Image4 = "Image4";
     public static final String column_Image5 = "Image5";
+    public static final String column_Image6 = "Image6";
+    public static final String column_Image7 = "Image7";
+    public static final String column_Image8 = "Image8";
+    public static final String column_Image9 = "Image9";
+    public static final String column_Image10 = "Image10";
+    public static final String column_Image11 = "Image11";
+    public static final String column_Image12 = "Image12";
+    public static final String column_Image13 = "Image13";
+    public static final String column_Image14 = "Image14";
+    public static final String column_Image15 = "Image15";
+    public static final String column_Image16 = "Image16";
+    public static final String column_Image17 = "Image17";
+    public static final String column_Image18 = "Image18";
+    public static final String column_Image19 = "Image19";
+    public static final String column_Image20 = "Image20";
+    public static final String column_Image21 = "Image21";
+    public static final String column_Image22 = "Image22";
+    public static final String column_Image23 = "Image23";
+    public static final String column_Image24 = "Image24";
+    public static final String column_Image25 = "Image25";
+    public static final String column_Image26 = "Image26";
+    public static final String column_Image27 = "Image27";
+    public static final String column_Image28 = "Image28";
+    public static final String column_Image29 = "Image29";
+    public static final String column_Image30 = "Image30";
+    public static final String column_Image31 = "Image31";
+    public static final String column_Image32 = "Image32";
 
     public static final String order_table = "orderTABLE";
     public static final String colunm_IDuser = "ID_User";
@@ -77,7 +104,34 @@ public class MyManage {
                            String strImage2,
                            String strImage3,
                            String strImage4,
-                           String strImage5) {
+                           String strImage5,
+                           String strImage6,
+                           String strImage7,
+                           String strImage8,
+                           String strImage9,
+                           String strImage10,
+                           String strImage11,
+                           String strImage12,
+                           String strImage13,
+                           String strImage14,
+                           String strImage15,
+                           String strImage16,
+                           String strImage17,
+                           String strImage18,
+                           String strImage19,
+                           String strImage20,
+                           String strImage21,
+                           String strImage22,
+                           String strImage23,
+                           String strImage24,
+                           String strImage25,
+                           String strImage26,
+                           String strImage27,
+                           String strImage28,
+                           String strImage29,
+                           String strImage30,
+                           String strImage31,
+                           String strImage32) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(column_Name, strName);
         contentValues.put(column_Brand, strBrand);
@@ -90,6 +144,34 @@ public class MyManage {
         contentValues.put(column_Image3, strImage3);
         contentValues.put(column_Image4, strImage4);
         contentValues.put(column_Image5, strImage5);
+        contentValues.put(column_Image6, strImage6);
+        contentValues.put(column_Image7, strImage7);
+        contentValues.put(column_Image8, strImage8);
+        contentValues.put(column_Image9, strImage9);
+        contentValues.put(column_Image10, strImage10);
+        contentValues.put(column_Image11, strImage11);
+        contentValues.put(column_Image12, strImage12);
+        contentValues.put(column_Image13, strImage13);
+        contentValues.put(column_Image14, strImage14);
+        contentValues.put(column_Image15, strImage15);
+        contentValues.put(column_Image16, strImage16);
+        contentValues.put(column_Image17, strImage17);
+        contentValues.put(column_Image18, strImage18);
+        contentValues.put(column_Image19, strImage19);
+        contentValues.put(column_Image20, strImage20);
+        contentValues.put(column_Image21, strImage21);
+        contentValues.put(column_Image22, strImage22);
+        contentValues.put(column_Image23, strImage23);
+        contentValues.put(column_Image24, strImage24);
+        contentValues.put(column_Image25, strImage25);
+        contentValues.put(column_Image26, strImage26);
+        contentValues.put(column_Image27, strImage27);
+        contentValues.put(column_Image28, strImage28);
+        contentValues.put(column_Image29, strImage29);
+        contentValues.put(column_Image30, strImage30);
+        contentValues.put(column_Image31, strImage31);
+        contentValues.put(column_Image32, strImage32);
+
         return sqLiteDatabase.insert(product_table, null, contentValues);
     }
 

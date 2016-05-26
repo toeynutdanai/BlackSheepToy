@@ -35,7 +35,34 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "Image2 text," +
             "Image3 text," +
             "Image4 text," +
-            "Image5 text);";
+            "Image5 text," +
+            "Image6 text," +
+            "Image7 text," +
+            "Image8 text," +
+            "Image9 text," +
+            "Image10 text," +
+            "Image11 text," +
+            "Image12 text," +
+            "Image13 text," +
+            "Image14 text," +
+            "Image15 text," +
+            "Image16 text," +
+            "Image17 text," +
+            "Image18 text," +
+            "Image19 text," +
+            "Image20 text," +
+            "Image21 text," +
+            "Image22 text," +
+            "Image23 text," +
+            "Image24 text," +
+            "Image25 text," +
+            "Image26 text," +
+            "Image27 text," +
+            "Image28 text," +
+            "Image29 text," +
+            "Image30 text," +
+            "Image31 text," +
+            "Image32 text);";
 
     private static final String create_order_table = "create table orderTABLE (" +
             "_id integer primary key," +
