@@ -118,6 +118,14 @@
         android:max="31"
         android:progress="0" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView26"
+        android:layout_below="@+id/seekBar"
+        android:textSize="@dimen/h2" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -162,7 +170,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@+id/seekBar">
+        android:layout_below="@+id/textView26">
 
         <TextView
             android:layout_width="wrap_content"

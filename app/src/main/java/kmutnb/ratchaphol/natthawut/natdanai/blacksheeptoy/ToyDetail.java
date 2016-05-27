@@ -21,7 +21,7 @@ public class ToyDetail extends AppCompatActivity {
 
     //Explicit
     private TextView nameTextView, brandTextView, priceTextView, usedTextView,
-            stockTextView, detailTextView;
+            stockTextView, detailTextView, textView26;
 
     private SeekBar seekBar;
     private ImageView imageView;
@@ -30,7 +30,9 @@ public class ToyDetail extends AppCompatActivity {
             image5String;
     private String[] imageStrings;
     private int indexAnInt = 0;
-    private int xn = 0;
+    private int cal = 0;
+    private int xnow = 0;
+    private int xstart = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,35 +64,64 @@ public class ToyDetail extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
-                Float x,xmove,xup;
-                x = motionEvent.getX(motionEvent.ACTION_DOWN);
-                xmove = motionEvent.getX();
-                xup = motionEvent.getX(motionEvent.ACTION_UP);
+                Float xdown,xmove,xup;
+                //xdown = motionEvent.getX(motionEvent.ACTION_DOWN);
+                //xmove = motionEvent.getX();
+                //xup = motionEvent.getX(motionEvent.ACTION_UP);
+
 
 
 
 
                 switch (motionEvent.getAction()) {
+
+                    case MotionEvent.ACTION_DOWN:
+
+                            xdown = motionEvent.getX();
+
+                            xstart = Math.round(xdown);
+                        break;
+
+
+                    case MotionEvent.ACTION_UP:
+
+                        xup = motionEvent.getX();
+
+                        xnow = Math.round(xup);
+
+                        cal = indexAnInt;
+
+                        break;
+
+
+
+
                     case MotionEvent.ACTION_MOVE:
 
-                        indexAnInt = Math.round(xmove)/15;
+                        xmove = motionEvent.getX();
+                        textView26.setText("move" + xmove.toString() +
+                                            "down" + xstart + "up" + xnow +
+                                            "ปัจจุบัน" + indexAnInt +
+                                            "cal" + cal);
+
+
+
+                        indexAnInt = (cal +  (xstart - Math.round(xmove))/40);
+
                         if (indexAnInt < 0) {
-                            indexAnInt = 31;
+                            indexAnInt += 31;
                         }
-                        if (indexAnInt >= 32) {
-                            indexAnInt = 0;
+                        if (indexAnInt > 31) {
+                            indexAnInt -= 31 ;
                         }
                         changeImage(imageStrings[indexAnInt]);
 
 
+                            break;
 
-                        break;
-                    case MotionEvent.ACTION_DOWN:
 
-                        break;
-                    case MotionEvent.ACTION_UP:
 
-                        break;
+
                 }
 
                 return true;
@@ -210,6 +241,8 @@ public class ToyDetail extends AppCompatActivity {
         detailTextView = (TextView) findViewById(R.id.editText5);
         imageView = (ImageView) findViewById(R.id.imageView2);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
+        textView26 = (TextView) findViewById(R.id.textView26);
+
 
 
 
