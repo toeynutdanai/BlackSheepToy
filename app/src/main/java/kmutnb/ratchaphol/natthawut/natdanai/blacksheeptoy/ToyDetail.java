@@ -51,8 +51,7 @@ public class ToyDetail extends AppCompatActivity {
         //Change Image
         changeImage(imageStrings[0]);
 
-        //seekbar
-        changeSeekbar();
+
 
         //touchscreen
         touchScreen();
@@ -99,10 +98,10 @@ public class ToyDetail extends AppCompatActivity {
                     case MotionEvent.ACTION_MOVE:
 
                         xmove = motionEvent.getX();
-                        textView26.setText("move" + xmove.toString() +
+                        /*textView26.setText("move" + xmove.toString() +
                                             "down" + xstart + "up" + xnow +
                                             "ปัจจุบัน" + indexAnInt +
-                                            "cal" + cal);
+                                            "cal" + cal);*/
 
 
 
@@ -129,7 +128,7 @@ public class ToyDetail extends AppCompatActivity {
         });
     }
 
-    private void changeSeekbar() {
+    /*private void changeSeekbar() {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -148,7 +147,7 @@ public class ToyDetail extends AppCompatActivity {
 
             }
         });
-    }
+    } */
 
 
 
@@ -156,7 +155,7 @@ public class ToyDetail extends AppCompatActivity {
 
 
 
-        Picasso.with(this).load(imageString).resize(150,200).into(imageView);
+        Picasso.with(this).load(imageString).resize(300,400).into(imageView);
 
 
     }//change image
@@ -240,8 +239,7 @@ public class ToyDetail extends AppCompatActivity {
         stockTextView = (TextView) findViewById(R.id.textView14);
         detailTextView = (TextView) findViewById(R.id.editText5);
         imageView = (ImageView) findViewById(R.id.imageView2);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        textView26 = (TextView) findViewById(R.id.textView26);
+
 
 
 
