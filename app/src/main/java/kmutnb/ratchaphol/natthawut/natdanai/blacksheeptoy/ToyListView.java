@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.AvoidXfermode;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class ToyListView extends AppCompatActivity {
@@ -181,6 +183,18 @@ public class ToyListView extends AppCompatActivity {
         });
 
     } // Main Method
+
+    public void clickContactUs(View view) {
+
+        Button buttContact = (Button) findViewById(R.id.button4);
+
+
+
+        Intent contactIntent = new Intent(Intent.ACTION_VIEW);
+        contactIntent.setData(Uri.parse("https://www.facebook.com/BlackSheepTOY/?fref=ts"));
+        startActivity(contactIntent);
+
+    }
 
     public void clickReadOrder(View view) {
 
