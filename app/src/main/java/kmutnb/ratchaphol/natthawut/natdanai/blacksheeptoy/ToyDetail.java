@@ -76,9 +76,9 @@ public class ToyDetail extends AppCompatActivity {
 
                     case MotionEvent.ACTION_DOWN:
 
-                            xdown = motionEvent.getX();
+                        xdown = motionEvent.getX();
 
-                            xstart = Math.round(xdown);
+                        xstart = Math.round(xdown);
                         break;
 
 
@@ -116,7 +116,7 @@ public class ToyDetail extends AppCompatActivity {
                         changeImage(imageStrings[indexAnInt]);
 
 
-                            break;
+                        break;
 
 
 
@@ -176,10 +176,10 @@ public class ToyDetail extends AppCompatActivity {
 
     private String findUsed(String usedString) {
 
-    String[] resultStrings = {"", "มือ 1", "มือ 2"};
-    int index = Integer.parseInt(usedString);
+        String[] resultStrings = {"", "มือ 1", "มือ 2"};
+        int index = Integer.parseInt(usedString);
 
-    return resultStrings[index];
+        return resultStrings[index];
     }; //กำหนดมือ 1 มือ 2
 
     private void recieveValue() {
@@ -274,10 +274,10 @@ public class ToyDetail extends AppCompatActivity {
     }
 
     //public void clickOrderDetail(View view) { ของเก่ารอมาแก้
-        public void clickOrderDetail(View view) {
+    public void clickOrderDetail(View view) {
 
         //if (checkProduct(nameString) || checkOrderTABLE()) { รอมาแก้
-            if (true) {
+        if (true) {
             //True สั่งได้
 
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

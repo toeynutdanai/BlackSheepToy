@@ -7,7 +7,7 @@
 
     <string name="name">ชื่อ </string>
     <string name="surname">นามสกุล </string>
-    <string name="idcard">หมายเลขบัตรประชาชน </string>
+    <string name="idcard">หมายเลขบัตรประจำตัวประชาชน</string>
     <string name="user">ชื่อผู้ใช้ </string>
     <string name="password">รหัสผ่าน </string>
     <string name="email">E-mail </string>

@@ -65,7 +65,6 @@ public class ToyAdapter extends BaseAdapter {
         TextView priceTextView = (TextView) view1.findViewById(R.id.textView12);
         TextView stockTextView = (TextView) view1.findViewById(R.id.textView13);
         TextView usedTextView = (TextView) view1.findViewById(R.id.textView14);
-        TextView detailTextView = (TextView) view1.findViewById(R.id.textView15);
         ImageView imageView = (ImageView) view1.findViewById(R.id.imageView2);
 
         nameTextView.setText(nameStrings[i]);
@@ -73,7 +72,7 @@ public class ToyAdapter extends BaseAdapter {
         priceTextView.setText("Price : " + priceStrings[i]);
         stockTextView.setText("Stock : " + stockStrings[i]);
         usedTextView.setText("Status : มือ " + usedStrings[i]);
-        detailTextView.setText(detailStrings[i]);
+
 
         Picasso.with(context).load(image1Strings[i]).resize(90,120).into(imageView);
 
