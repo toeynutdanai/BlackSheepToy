@@ -25,9 +25,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_alignParentBottom="true">
 
         <Button
             android:layout_width="wrap_content"
@@ -44,11 +42,11 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contact US"
+            android:text="How To Order"
             android:id="@+id/button4"
             android:layout_weight="1"
-            android:background="#ec4c97e1"
-            android:onClick="clickContactUs"
+            android:background="#e7fbfbfb"
+            android:onClick="clickHowtoOrder"
             android:nestedScrollingEnabled="false"
             android:textStyle="bold" />
     </LinearLayout>

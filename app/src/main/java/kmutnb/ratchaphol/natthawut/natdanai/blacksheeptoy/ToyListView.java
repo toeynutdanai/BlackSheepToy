@@ -184,15 +184,15 @@ public class ToyListView extends AppCompatActivity {
 
     } // Main Method
 
-    public void clickContactUs(View view) {
+    public void clickHowtoOrder(View view) {
 
-        Button buttContact = (Button) findViewById(R.id.button4);
+        startActivity(new Intent(ToyListView.this, HowToOrder.class));
 
 
 
-        Intent contactIntent = new Intent(Intent.ACTION_VIEW);
+        /*Intent contactIntent = new Intent(Intent.ACTION_VIEW);
         contactIntent.setData(Uri.parse("https://www.facebook.com/BlackSheepTOY/?fref=ts"));
-        startActivity(contactIntent);
+        startActivity(contactIntent);*/
 
     }
 

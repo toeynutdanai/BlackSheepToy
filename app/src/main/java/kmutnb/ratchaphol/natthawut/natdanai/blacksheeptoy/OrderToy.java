@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -179,23 +180,24 @@ public class OrderToy extends AppCompatActivity {
 
 
             uploadOrderToServer();
+            Toast.makeText(this, "ขอบคุณครับ ทางเราได้รับ order แล้ว", Toast.LENGTH_SHORT).show();
 
-            MyAlertDialog myAlertDialog = new MyAlertDialog();
-            myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
+            /*MyAlertDialog myAlertDialog1 = new MyAlertDialog();
+            myAlertDialog1.myDialog(this, R.drawable.icon_myaccount,
                     "แจ้งโอนเงิน", "หากโอนเงินแล้ว โปรดแจ้งที่  Fanpage:BalckSheep TOYS หรือกดปุ่ม CONTACT US" +
                             " ที่หน้าแรก ");
 
-            MyAlertDialog myAlertDialog1 = new MyAlertDialog();
-            myAlertDialog1.myDialog(this, R.drawable.icon_myaccount,
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
                     "ขอบคุณครับ", "โปรดโอนเงินมาที่บัญชี\nชื่อ นาย ณัฐดนัย เข็มมาลากุล\n" +
                             "ธนาคารกสิกรไทย\nเลขที่บัญชี 9882082390\n" +
                             "ธนาคารกรุงไทย\nเลขที่บัญชี 9822693923\n" +
-                            "ธนาคารกรุงเทพ\nเลขที่บัญชี 2080826734\n");
+                            "ธนาคารกรุงเทพ\nเลขที่บัญชี 2080826734\n");*/
+
+
 
             //finish();
 
-            //"โปรดโอนเงินมาที่บัญชีธนาคารกสิกรไทย\n ชื่อบัญชี นายณัฐดนัย เข็มมาลากุล\n" +
-            //" เลขที่บัญชี 9882082390\n หากโอนเงินแล้ว โปรดแจ้งที่  Fanpage:BalckSheep TOYS หรือกดปุ่ม CONTACT US ที่หน้าแรก "
 
         }
 
@@ -236,7 +238,7 @@ public class OrderToy extends AppCompatActivity {
 
                 @Override
                 public void onResponse(Response response) throws IOException {
-                    //finish();
+                    finish();
                 }
             });
 

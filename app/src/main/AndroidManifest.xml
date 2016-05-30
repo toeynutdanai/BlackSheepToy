@@ -20,7 +20,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ToyListView" />
         <activity android:name=".ToyDetail" />
-        <activity android:name=".OrderToy"></activity>
+        <activity android:name=".OrderToy" />
+        <activity android:name=".HowToOrder"></activity>
     </application>
 
 </manifest>

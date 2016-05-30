@@ -105,7 +105,7 @@ public class ToyDetail extends AppCompatActivity {
 
 
 
-                        indexAnInt = (cal +  (xstart - Math.round(xmove))/40);
+                        indexAnInt = (cal +  (xstart - Math.round(xmove))/30);
 
                         if (indexAnInt < 0) {
                             indexAnInt += 31;
@@ -276,25 +276,25 @@ public class ToyDetail extends AppCompatActivity {
     //public void clickOrderDetail(View view) { ของเก่ารอมาแก้
     public void clickOrderDetail(View view) {
 
-        //if (checkProduct(nameString) || checkOrderTABLE()) { รอมาแก้
-        if (true) {
+        //if (checkProduct(nameString) || checkOrderTABLE()) {
+            if (checkProduct(nameString) || checkOrderTABLE() == true) {
             //True สั่งได้
 
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date date = new Date();
-            String strDate = dateFormat.format(date);
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = new Date();
+                String strDate = dateFormat.format(date);
 
-            MyManage myManage = new MyManage(this);
-            myManage.addOrder(idString, strDate, "n/a", nameString, priceString);
+                MyManage myManage = new MyManage(this);
+                myManage.addOrder(idString, strDate, "n/a", nameString, priceString);
 
-            Toast.makeText(this, "บันทึก" + nameString + "แล้ว", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "บันทึก" + nameString + "แล้ว", Toast.LENGTH_SHORT).show();
 
-            finish();
-        } else {
+                finish();
+            } else {
             //False สั่งไม่ได้
 
-            MyAlertDialog myAlertDialog = new MyAlertDialog();
-            myAlertDialog.myDialog(this,R.drawable.icon_myaccount,
+                 MyAlertDialog myAlertDialog = new MyAlertDialog();
+                 myAlertDialog.myDialog(this,R.drawable.icon_myaccount,
                     "ไม่สามารถสั่งซื้อได้" , "มีสินค้าอยู่ในตะกร้าแล้ว");
         }
     } //clickOrderdetail
@@ -315,19 +315,21 @@ public class ToyDetail extends AppCompatActivity {
     }
 
     private boolean checkProduct(String nameString) {
-        try {
+
 
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = " + "'" + nameString + "'", null);
-            cursor.moveToFirst();
+            Cursor ocursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = " + "'" + nameString + "'", null);
+            ocursor.moveToFirst();
+            int i = ocursor.getCount();
+            if (i == 0) {
+                return true;
+            } else {
+                return false;
+            }
 
-            return false;
 
-        } catch (Exception e) {
-            return true;
 
-        }
 
 
     }
