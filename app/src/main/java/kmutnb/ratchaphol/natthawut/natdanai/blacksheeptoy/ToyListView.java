@@ -28,7 +28,7 @@ public class ToyListView extends AppCompatActivity {
         //Read All productTABLE
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Stock != 0", null);
         cursor.moveToFirst();
         int intCount = cursor.getCount();
 

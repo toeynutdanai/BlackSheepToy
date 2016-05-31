@@ -2,6 +2,8 @@ package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,6 +68,12 @@ public class SignUpActivity extends AppCompatActivity {
                     MyAlertDialog myAlertDialog = new MyAlertDialog();
                     myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
                             "มีช่องว่าง", "กรุณากรอกทุกช่องด้วยค่ะ");
+
+                } else if (checkUser() == true) {
+                    //User ซ้ำ
+                    MyAlertDialog myAlertDialog = new MyAlertDialog();
+                    myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
+                            "User นี้ไม่สามารถใช้งานได้", "มีผู้อื่นใช้ User นี้แล้ว!");
 
                 } else {
                     //No Space
@@ -147,6 +155,24 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }// updateToMySQL
+
+    private boolean checkUser() {
+
+        boolean result = false;
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = " + "'" + userString + "'", null);
+        cursor.moveToFirst();
+        int i = cursor.getCount();
+        if (i == 0) {
+            return true;
+        }
+
+        return result;
+
+
+    }
+
 
     private boolean checkSpace() {
 

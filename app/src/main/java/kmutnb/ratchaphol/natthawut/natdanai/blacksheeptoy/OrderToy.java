@@ -163,6 +163,7 @@ public class OrderToy extends AppCompatActivity {
     }
 
     public void clickAddMore(View view) {
+
         finish();
     }
 
@@ -177,26 +178,15 @@ public class OrderToy extends AppCompatActivity {
                     "ส่งที่ไหน ?", "โปรดระบุสถานที่ส่งของด้วยคะ");
         } else {
             //Have Address
-
-
             uploadOrderToServer();
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                    MODE_PRIVATE, null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT*FROM orderTABLE", null);
+            cursor.moveToFirst();
+            sqLiteDatabase.delete("orderTABLE",null,null);
             Toast.makeText(this, "ขอบคุณครับ ทางเราได้รับ order แล้ว", Toast.LENGTH_SHORT).show();
 
-            /*MyAlertDialog myAlertDialog1 = new MyAlertDialog();
-            myAlertDialog1.myDialog(this, R.drawable.icon_myaccount,
-                    "แจ้งโอนเงิน", "หากโอนเงินแล้ว โปรดแจ้งที่  Fanpage:BalckSheep TOYS หรือกดปุ่ม CONTACT US" +
-                            " ที่หน้าแรก ");
 
-            MyAlertDialog myAlertDialog = new MyAlertDialog();
-            myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
-                    "ขอบคุณครับ", "โปรดโอนเงินมาที่บัญชี\nชื่อ นาย ณัฐดนัย เข็มมาลากุล\n" +
-                            "ธนาคารกสิกรไทย\nเลขที่บัญชี 9882082390\n" +
-                            "ธนาคารกรุงไทย\nเลขที่บัญชี 9822693923\n" +
-                            "ธนาคารกรุงเทพ\nเลขที่บัญชี 2080826734\n");*/
-
-
-
-            //finish();
 
 
         }
