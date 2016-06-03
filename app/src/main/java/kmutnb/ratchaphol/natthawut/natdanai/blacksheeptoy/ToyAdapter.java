@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by teay on 5/8/2016.
- */
+
 public class ToyAdapter extends BaseAdapter {
 
     //Explicit
@@ -57,7 +55,8 @@ public class ToyAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.
+                LAYOUT_INFLATER_SERVICE);
         View view1 = layoutInflater.inflate(R.layout.toy_listview, viewGroup, false);
 
         TextView nameTextView = (TextView) view1.findViewById(R.id.textView10);

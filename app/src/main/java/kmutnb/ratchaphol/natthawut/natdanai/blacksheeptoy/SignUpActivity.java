@@ -117,8 +117,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
         builder.show();
-
-
     } //confirm data
 
     private void updateToMySQL() {
@@ -145,7 +143,8 @@ public class SignUpActivity extends AppCompatActivity {
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
             httpClient.execute(httpPost);
 
-            Toast.makeText(SignUpActivity.this, "บันทึกเรียบร้อยแล้ว ขอบคุณค่ะ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "บันทึกเรียบร้อยแล้ว ขอบคุณค่ะ",
+                    Toast.LENGTH_SHORT).show();
             finish();
 
 
@@ -161,7 +160,8 @@ public class SignUpActivity extends AppCompatActivity {
         boolean result = false;
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = " + "'" + userString + "'", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = " +
+                "'" + userString + "'", null);
         cursor.moveToFirst();
         int i = cursor.getCount();
         if (i == 0) {

@@ -37,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/howtodetail"
                 android:id="@+id/textView27"
-                android:textColor="@color/colorblack" />
+                android:textColor="@color/colorblack"
+                android:textSize="@dimen/h3" />
         </ScrollView>
     </LinearLayout>
 

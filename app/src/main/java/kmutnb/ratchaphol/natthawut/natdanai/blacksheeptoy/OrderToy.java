@@ -1,5 +1,6 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -71,9 +72,9 @@ public class OrderToy extends AppCompatActivity {
 
     }
 
-    private void createListView() {
+    public void createListView() {
 
-        int intTotel = 0;
+        int intTotal = 0;
 
         final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
@@ -90,13 +91,13 @@ public class OrderToy extends AppCompatActivity {
             priceStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Price));
             priceInts[i] = Integer.parseInt(priceStrings[i]);
 
-            intTotel = intTotel + priceInts[i];
+            intTotal = intTotal + priceInts[i];
 
             cursor.moveToNext();
         }   // for
         cursor.close();
 
-        totalTextView.setText(Integer.toString(intTotel));
+        totalTextView.setText(Integer.toString(intTotal));
 
         ReceiveAdapter receiveAdapter = new ReceiveAdapter(this,
                 productStrings, priceStrings);
@@ -106,9 +107,11 @@ public class OrderToy extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.
+                                database_name,
                         MODE_PRIVATE, null);
-                final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE", null);
+                final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE",
+                        null);
                 cursor.moveToFirst();
 
                 cursor.moveToPosition(i);
@@ -139,7 +142,8 @@ public class OrderToy extends AppCompatActivity {
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE _id = " + "'" + idString + "'", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE _id = "
+                + "'" + idString + "'", null);
         cursor.moveToFirst();
 
         userStrings = new String[cursor.getColumnCount()];
@@ -178,6 +182,7 @@ public class OrderToy extends AppCompatActivity {
                     "ส่งที่ไหน ?", "โปรดระบุสถานที่ส่งของด้วยคะ");
         } else {
             //Have Address
+            //checkProduct();
             uploadOrderToServer();
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
@@ -185,13 +190,49 @@ public class OrderToy extends AppCompatActivity {
             cursor.moveToFirst();
             sqLiteDatabase.delete("orderTABLE",null,null);
             Toast.makeText(this, "ขอบคุณครับ ทางเราได้รับ order แล้ว", Toast.LENGTH_SHORT).show();
-
-
-
-
         }
 
     }   // clickCheckBill
+
+    private void checkProduct() {
+
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE "  , null);
+        cursor.moveToFirst();
+        int count = cursor.getCount();
+        String[] NameProduct = new String[count];
+
+        for (int i = 0 ; i< count ; i++) {
+            NameProduct[i] = cursor.getString(cursor.getColumnIndex("Product"));
+            cursor.moveToNext();
+            Log.i("NameProduct/11", NameProduct[i]);
+        }
+        cursor.close();
+
+        for (int i = 0; i< count; i++){
+            Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Name ="
+                    + NameProduct[i] , null);
+            cursor1.moveToNext();
+
+            int[] Stock = new int[cursor1.getCount()];
+            Stock[i] = cursor1.getInt(cursor1.getColumnIndex("Stock"));
+            int Stocknow = Stock[i]-1;
+
+            ContentValues contentValues = new ContentValues();
+            //contentValues.put(MyManage.column_Name,NameProduct[i]);
+            contentValues.put("Stock",Stocknow);
+
+            sqLiteDatabase.update("productTABLE",contentValues , "Name =" +
+                    NameProduct[i], null);
+
+        }
+
+
+
+
+    }//Check Product
 
     private void uploadOrderToServer() {
 
@@ -214,8 +255,10 @@ public class OrderToy extends AppCompatActivity {
                     .add("Name", userStrings[1])
                     .add("Surname", userStrings[2])
                     .add("Address", addressString)
-                    .add("Product", cursor.getString(cursor.getColumnIndex(MyManage.colunm_Product)))
-                    .add("Price", cursor.getString(cursor.getColumnIndex(MyManage.column_Price)))
+                    .add("Product", cursor.getString(cursor.getColumnIndex(MyManage.
+                            colunm_Product)))
+                    .add("Price", cursor.getString(cursor.getColumnIndex(MyManage.
+                            column_Price)))
                     .build();
             Request.Builder builder = new Request.Builder();
             Request request = builder.url(strURL).post(requestBody).build();

@@ -7,9 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-/**
- * Created by teay on 5/22/2016.
- */
 public class ReceiveAdapter extends BaseAdapter{
 
     //Explicit
@@ -42,7 +39,8 @@ public class ReceiveAdapter extends BaseAdapter{
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.
+                LAYOUT_INFLATER_SERVICE);
         View view1 = layoutInflater.inflate(R.layout.receive_listview, viewGroup, false);
 
         TextView productTextView = (TextView) view1.findViewById(R.id.textView20);

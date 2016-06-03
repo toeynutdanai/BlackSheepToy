@@ -28,7 +28,8 @@ public class ToyListView extends AppCompatActivity {
         //Read All productTABLE
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Stock != 0", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Stock != 0",
+                null);
         cursor.moveToFirst();
         int intCount = cursor.getCount();
 
@@ -119,8 +120,8 @@ public class ToyListView extends AppCompatActivity {
         }//for
         cursor.close();
 
-        ToyAdapter toyAdapter = new ToyAdapter(this, nameStrings, brandStrings, priceStrings, stockStrings,
-                usedStrings, detailStrings, image1String);
+        ToyAdapter toyAdapter = new ToyAdapter(this, nameStrings, brandStrings, priceStrings,
+                stockStrings, usedStrings, detailStrings, image1String);
         listView.setAdapter(toyAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -188,12 +189,6 @@ public class ToyListView extends AppCompatActivity {
 
         startActivity(new Intent(ToyListView.this, HowToOrder.class));
 
-
-
-        /*Intent contactIntent = new Intent(Intent.ACTION_VIEW);
-        contactIntent.setData(Uri.parse("https://www.facebook.com/BlackSheepTOY/?fref=ts"));
-        startActivity(contactIntent);*/
-
     }
 
     public void clickReadOrder(View view) {
@@ -219,7 +214,8 @@ public class ToyListView extends AppCompatActivity {
     private boolean checkOrder() {
 
         boolean result = true;
-        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,MODE_PRIVATE,null);
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE,null);
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + MyManage.order_table,null);
         cursor.moveToFirst();
 

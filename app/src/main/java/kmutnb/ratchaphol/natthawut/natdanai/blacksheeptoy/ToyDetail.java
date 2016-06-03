@@ -21,13 +21,12 @@ public class ToyDetail extends AppCompatActivity {
 
     //Explicit
     private TextView nameTextView, brandTextView, priceTextView, usedTextView,
-            stockTextView, detailTextView, textView26;
+            stockTextView, detailTextView;
 
-    private SeekBar seekBar;
+
     private ImageView imageView;
     private String idString, nameString, brandString, priceString,
-            usedString, stockString, detailString, image1String, image2String, image3String, image4String,
-            image5String;
+            usedString, stockString, detailString;
     private String[] imageStrings;
     private int indexAnInt = 0;
     private int cal = 0;
@@ -64,13 +63,6 @@ public class ToyDetail extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 Float xdown,xmove,xup;
-                //xdown = motionEvent.getX(motionEvent.ACTION_DOWN);
-                //xmove = motionEvent.getX();
-                //xup = motionEvent.getX(motionEvent.ACTION_UP);
-
-
-
-
 
                 switch (motionEvent.getAction()) {
 
@@ -92,18 +84,9 @@ public class ToyDetail extends AppCompatActivity {
 
                         break;
 
-
-
-
                     case MotionEvent.ACTION_MOVE:
 
                         xmove = motionEvent.getX();
-                        /*textView26.setText("move" + xmove.toString() +
-                                            "down" + xstart + "up" + xnow +
-                                            "ปัจจุบัน" + indexAnInt +
-                                            "cal" + cal);*/
-
-
 
                         indexAnInt = (cal +  (xstart - Math.round(xmove))/30);
 
@@ -118,37 +101,12 @@ public class ToyDetail extends AppCompatActivity {
 
                         break;
 
-
-
-
                 }
 
                 return true;
             }
         });
     }
-
-    /*private void changeSeekbar() {
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                indexAnInt = i;
-
-                changeImage(imageStrings[indexAnInt]);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-    } */
-
 
 
     private void changeImage(String imageString) {
@@ -247,36 +205,16 @@ public class ToyDetail extends AppCompatActivity {
     }
 
 
-
-    /* public void clickDEC(View view) {
-
-        indexAnInt -= 1;
-        if (indexAnInt < 0) {
-            indexAnInt = 31;
-        }
-        changeImage(imageStrings[indexAnInt]);
-
-    }//ลด
-
-    public void clickINC(View view) {
-
-        indexAnInt += 1;
-        if (indexAnInt >= 32 ) {
-            indexAnInt = 0;
-        }
-        changeImage(imageStrings[indexAnInt]);
-    }//เพิ่ม */
-
     public void clickCancelDetail(View view) {
 
         finish();
 
     }
 
-    //public void clickOrderDetail(View view) { ของเก่ารอมาแก้
+
     public void clickOrderDetail(View view) {
 
-        //if (checkProduct(nameString) || checkOrderTABLE()) {
+
             if (checkProduct(nameString) || checkOrderTABLE() == true) {
             //True สั่งได้
 
@@ -319,7 +257,8 @@ public class ToyDetail extends AppCompatActivity {
 
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
-            Cursor ocursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = " + "'" + nameString + "'", null);
+            Cursor ocursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = "
+                    + "'" + nameString + "'", null);
             ocursor.moveToFirst();
             int i = ocursor.getCount();
             if (i == 0) {
@@ -327,11 +266,6 @@ public class ToyDetail extends AppCompatActivity {
             } else {
                 return false;
             }
-
-
-
-
-
     }
 
 

@@ -14,9 +14,6 @@ public class HowToOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_order);
 
-
-
-        bindwitget();
     }//Main Method
 
     public void onClickContactUs(View view) {
@@ -27,13 +24,6 @@ public class HowToOrder extends AppCompatActivity {
 
 
     }
-
-    private void bindwitget() {
-
-        Button facebook = (Button) findViewById(R.id.button5);
-
-    }
-
 
 
 }//Main class

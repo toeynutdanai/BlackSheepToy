@@ -4,9 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by teay on 4/6/2016.
- */
+
 public class MyManage {
 
     //explicit

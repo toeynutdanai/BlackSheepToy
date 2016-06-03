@@ -47,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         myManage = new MyManage(this);
 
-        //Test Add Value
-        //testAdd();
-
         //Delete All SQLite
         deleteAllSQLite();
 
@@ -94,12 +91,14 @@ public class MainActivity extends AppCompatActivity {
 
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE User = " + "'" + userString + "'", null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE User = " +
+                    "'" + userString + "'", null);
             cursor.moveToFirst();
 
             //Check Password
             if (passwordString.equals(cursor.getString(5))) {
-                Toast.makeText(this, "ยินดีต้อนรับ คุณ " + cursor.getString(1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "ยินดีต้อนรับ คุณ " + cursor.getString(1),
+                        Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(MainActivity.this, ToyListView.class);
                 intent.putExtra("ID_User", cursor.getString(0));
@@ -219,11 +218,16 @@ public class MainActivity extends AppCompatActivity {
                             String strImage31 = jsonObject.getString(MyManage.column_Image31);
                             String strImage32 = jsonObject.getString(MyManage.column_Image32);
 
-                            myManage.addProduct(strNameProduct, strBrand, strPrice, strStock, strUsed, strDetail, strImage1,
-                                    strImage2, strImage3, strImage4, strImage5, strImage6, strImage7, strImage8,
-                                    strImage9, strImage10, strImage11, strImage12, strImage13, strImage14, strImage15,
-                                    strImage16, strImage17, strImage18, strImage19, strImage20, strImage21, strImage22,
-                                    strImage23, strImage24, strImage25, strImage26, strImage27, strImage28, strImage29,
+                            myManage.addProduct(strNameProduct, strBrand, strPrice,
+                                    strStock, strUsed, strDetail, strImage1,
+                                    strImage2, strImage3, strImage4, strImage5,
+                                    strImage6, strImage7, strImage8,
+                                    strImage9, strImage10, strImage11, strImage12,
+                                    strImage13, strImage14, strImage15,
+                                    strImage16, strImage17, strImage18, strImage19,
+                                    strImage20, strImage21, strImage22,
+                                    strImage23, strImage24, strImage25, strImage26,
+                                    strImage27, strImage28, strImage29,
                                     strImage30, strImage31, strImage32);
 
                             break;
@@ -248,16 +252,6 @@ public class MainActivity extends AppCompatActivity {
         sqLiteDatabase.delete(MyManage.product_table, null, null);
         sqLiteDatabase.delete(MyManage.user_table, null, null);
         sqLiteDatabase.delete(MyManage.order_table, null, null);
-    }
-
-    private void testAdd() {
-        myManage.addUser("id", "name", "sur", "idcard", "user", "pass", "email", "phone");
-        myManage.addProduct("name", "brand", "price", "stock", "used",
-                "detail", "image1", "image2", "image3", "image4", "image5","image6","image7",
-                "image8","image9","image10","image11","image12","image13","image14","image15",
-                "image16","image17","image18","image19","image20","image21","image22","image23",
-                "image24","image25","image26","image27","image28","image29","image30","image31",
-                "image32");
     }
 
     public void clickSignUp(View view) {
