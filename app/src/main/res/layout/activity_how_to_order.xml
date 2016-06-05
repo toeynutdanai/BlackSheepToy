@@ -38,7 +38,8 @@
                 android:text="@string/howtodetail"
                 android:id="@+id/textView27"
                 android:textColor="@color/colorblack"
-                android:textSize="@dimen/h3" />
+                android:textSize="@dimen/h3"
+                android:gravity="center_horizontal" />
         </ScrollView>
     </LinearLayout>
 

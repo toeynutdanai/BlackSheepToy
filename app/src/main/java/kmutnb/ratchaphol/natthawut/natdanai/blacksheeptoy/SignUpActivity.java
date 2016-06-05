@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -164,11 +165,12 @@ public class SignUpActivity extends AppCompatActivity {
         boolean result = false;
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE WHERE Product = " +
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE User = " +
                 "'" + userString + "'", null);
         cursor.moveToFirst();
         int i = cursor.getCount();
-        if (i == 0) {
+        Log.i("User", Integer.toString(i));
+        if (i != 0) {
             return true;
         }
 
