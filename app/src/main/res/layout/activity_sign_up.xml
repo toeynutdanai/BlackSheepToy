@@ -99,7 +99,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/edtPassword"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:inputType="textPassword" />
         </LinearLayout>
 
         <LinearLayout
@@ -119,7 +120,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/edtIDcard" />
+                android:id="@+id/edtIDcard"
+                android:inputType="number" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,7 +142,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/edtEmail"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:inputType="textWebEmailAddress" />
         </LinearLayout>
 
         <LinearLayout
@@ -153,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/phone_number"
                 android:id="@+id/textView8"
-                android:textSize="@dimen/h2"
+                android:textSize="@dimen/h3"
                 android:layout_weight="1"
                 android:textColor="#030303" />
 
@@ -161,7 +164,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/edtPhone"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:inputType="phone" />
         </LinearLayout>
 
     </LinearLayout>

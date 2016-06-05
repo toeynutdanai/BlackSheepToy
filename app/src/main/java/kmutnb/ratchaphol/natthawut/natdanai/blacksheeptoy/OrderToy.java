@@ -182,7 +182,7 @@ public class OrderToy extends AppCompatActivity {
                     "ส่งที่ไหน ?", "โปรดระบุสถานที่ส่งของด้วยคะ");
         } else {
             //Have Address
-            //checkProduct();
+            checkProduct();
             uploadOrderToServer();
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
@@ -199,33 +199,45 @@ public class OrderToy extends AppCompatActivity {
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE "  , null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE ", null);
         cursor.moveToFirst();
         int count = cursor.getCount();
+        Log.i("Count order", Integer.toString(count));
         String[] NameProduct = new String[count];
 
         for (int i = 0 ; i< count ; i++) {
+
             NameProduct[i] = cursor.getString(cursor.getColumnIndex("Product"));
+            //NameProduct[i] = cursor.getString(cursor.getColumnIndex("Product"));
             cursor.moveToNext();
             Log.i("NameProduct/11", NameProduct[i]);
         }
         cursor.close();
 
-        for (int i = 0; i< count; i++){
-            Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Name ="
-                    + NameProduct[i] , null);
-            cursor1.moveToNext();
+        for (int i = 0; i< count; i++) {
+            Log.i("Namestring[0]", NameProduct[0]);
+            Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Name = "+"'"+ NameProduct[i]+"'",null);
+            //Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE 'Name' ="
+            //        + "'" + NameProduct[i] + "'", null);
+            cursor1.moveToFirst();
 
-            int[] Stock = new int[cursor1.getCount()];
-            Stock[i] = cursor1.getInt(cursor1.getColumnIndex("Stock"));
-            int Stocknow = Stock[i]-1;
+            int check = cursor1.getCount();
+            Log.i("check", Integer.toString(check));
+
+
+            //int Stock = cursor1.getCount();
+            String Stock = cursor1.getString(cursor1.getColumnIndex("Stock"));
+            int Stocknow = Integer.parseInt(Stock) - 1;
+
+            Log.i("Stock", Stock);
+            Log.i("Stocknow", Integer.toString(Stocknow));
+
 
             ContentValues contentValues = new ContentValues();
-            //contentValues.put(MyManage.column_Name,NameProduct[i]);
-            contentValues.put("Stock",Stocknow);
+            contentValues.put("Stock", Stocknow);
 
-            sqLiteDatabase.update("productTABLE",contentValues , "Name =" +
-                    NameProduct[i], null);
+            sqLiteDatabase.update("productTABLE", contentValues, "Name =" +
+                    "'"+ NameProduct[i] + "'", null);
 
         }
 
@@ -233,6 +245,10 @@ public class OrderToy extends AppCompatActivity {
 
 
     }//Check Product
+
+    private void uploadStockToServer() {
+
+    }
 
     private void uploadOrderToServer() {
 

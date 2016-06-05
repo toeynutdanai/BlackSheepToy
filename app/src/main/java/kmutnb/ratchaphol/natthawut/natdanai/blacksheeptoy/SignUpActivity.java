@@ -67,8 +67,12 @@ public class SignUpActivity extends AppCompatActivity {
                     //Have Space
                     MyAlertDialog myAlertDialog = new MyAlertDialog();
                     myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
-                            "มีช่องว่าง", "กรุณากรอกทุกช่องด้วยค่ะ");
+                            "มีช่องว่าง", "กรุณากรอกทุกช่องด้วยครับ");
 
+                }else if (idCardEditText.length() != 13) {
+                    MyAlertDialog myAlertDialog = new MyAlertDialog();
+                    myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
+                            "โปรดเช็คข้อมูล", "กรุณากรอกหมายเลขประจำตัวประชาชนให้ถูกต้องด้วยครับ");
                 } else if (checkUser() == true) {
                     //User ซ้ำ
                     MyAlertDialog myAlertDialog = new MyAlertDialog();
