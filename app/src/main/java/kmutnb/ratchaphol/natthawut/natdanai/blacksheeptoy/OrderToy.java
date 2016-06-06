@@ -1,6 +1,7 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -184,6 +185,8 @@ public class OrderToy extends AppCompatActivity {
             //Have Address
             checkProduct();
             uploadOrderToServer();
+            startActivity(new Intent(OrderToy.this, ToyListView.class));
+
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
             Cursor cursor = sqLiteDatabase.rawQuery("SELECT*FROM orderTABLE", null);
@@ -211,7 +214,7 @@ public class OrderToy extends AppCompatActivity {
             //NameProduct[i] = cursor.getString(cursor.getColumnIndex("Product"));
             cursor.moveToNext();
             Log.i("NameProduct/11", NameProduct[i]);
-        }
+        }//for รับค่า NameProduct
         cursor.close();
 
         for (int i = 0; i< count; i++) {
@@ -225,7 +228,6 @@ public class OrderToy extends AppCompatActivity {
             Log.i("check", Integer.toString(check));
 
 
-            //int Stock = cursor1.getCount();
             String Stock = cursor1.getString(cursor1.getColumnIndex("Stock"));
             int Stocknow = Integer.parseInt(Stock) - 1;
 
@@ -238,6 +240,29 @@ public class OrderToy extends AppCompatActivity {
 
             sqLiteDatabase.update("productTABLE", contentValues, "Name =" +
                     "'"+ NameProduct[i] + "'", null);
+
+            //Update Stock IN SQL
+            String urlUpdate = "http://swiftcodingthai.com/sheep/php_update_stock.php";
+            OkHttpClient okHttpClient = new OkHttpClient();
+            RequestBody requestBody = new FormEncodingBuilder()
+                    .add("isAdd", "true")
+                    .add("Name", NameProduct[i])
+                    .add("Stock", Integer.toString(Stocknow))
+                    .build();
+            Request.Builder builder = new Request.Builder();
+            Request request = builder.url(urlUpdate).post(requestBody).build();
+            Call call = okHttpClient.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Response response) throws IOException {
+
+                }
+            });
 
         }
 
@@ -287,7 +312,7 @@ public class OrderToy extends AppCompatActivity {
 
                 @Override
                 public void onResponse(Response response) throws IOException {
-                    finish();
+
                 }
             });
 
