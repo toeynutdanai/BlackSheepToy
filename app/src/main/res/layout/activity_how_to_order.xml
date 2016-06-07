@@ -41,17 +41,36 @@
                 android:textSize="@dimen/h3"
                 android:gravity="center_horizontal" />
         </ScrollView>
+
     </LinearLayout>
 
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CONTACT US"
-        android:id="@+id/button5"
-        android:layout_alignParentBottom="true"
-        android:background="#f05998eb"
-        android:textStyle="bold"
-        android:textColor="@color/colorblack"
-        android:onClick="onClickContactUs" />
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTACT US"
+            android:id="@+id/button5"
+            android:layout_alignParentBottom="true"
+            android:background="#f05998eb"
+            android:textStyle="bold"
+            android:textColor="@color/colorblack"
+            android:onClick="onClickContactUs"
+            android:layout_weight="2" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/button10"
+            android:layout_weight="1"
+            android:background="@color/colorblack"
+            android:textColor="#fdfcfc"
+            android:onClick="onClickCancel" />
+    </LinearLayout>
 
 </RelativeLayout>

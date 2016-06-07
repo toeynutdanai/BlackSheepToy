@@ -25,5 +25,9 @@ public class HowToOrder extends AppCompatActivity {
 
     }
 
+    public void onClickCancel(View view) {
+        finish();
+    }
+
 
 }//Main class
