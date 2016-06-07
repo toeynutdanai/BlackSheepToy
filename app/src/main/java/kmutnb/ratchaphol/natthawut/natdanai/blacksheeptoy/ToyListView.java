@@ -7,6 +7,7 @@ import android.graphics.AvoidXfermode;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class ToyListView extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
 
         strID = getIntent().getStringExtra("ID_User");
+        Log.d("userListview", "strID ==>" + strID);
 
         //Read All productTABLE
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
