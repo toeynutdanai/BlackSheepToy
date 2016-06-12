@@ -70,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
                     myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
                             "มีช่องว่าง", "กรุณากรอกทุกช่องด้วยครับ");
 
-                }else if (idCardEditText.length() != 13) {
+                } else if (idCardEditText.length() != 13) {
                     MyAlertDialog myAlertDialog = new MyAlertDialog();
                     myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
                             "โปรดเช็คข้อมูล", "กรุณากรอกหมายเลขประจำตัวประชาชนให้ถูกต้องด้วยครับ");
@@ -80,7 +80,21 @@ public class SignUpActivity extends AppCompatActivity {
                     myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
                             "User นี้ไม่สามารถใช้งานได้", "มีผู้อื่นใช้ User นี้แล้ว!");
 
-                } else {
+                } else if (checkID() == false) {
+
+                    MyAlertDialog myAlertDialog = new MyAlertDialog();
+                    myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
+                            "UserName ไม่สามารถใช้ภาษาไทยได้", "กรุณาใช้ภาษาอังกฤษหรือตัวเลขเท่านั้น");
+
+
+                } else if (checkPass() == false) {
+
+                    MyAlertDialog myAlertDialog = new MyAlertDialog();
+                    myAlertDialog.myDialog(SignUpActivity.this, R.drawable.danger,
+                            "Password ไม่สามารถใช้ภาษาไทยได้", "กรุณาใช้ภาษาอังกฤษหรือตัวเลขเท่านั้น");
+
+
+                }else {
                     //No Space
                     confirmData();
 
@@ -208,5 +222,23 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     } //bindWidget
+
+    private boolean checkPass() {
+        if (passwordString.matches("[A-Za-z0-9]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean checkID() {
+
+        if (userString.matches("[A-Za-z0-9]+")) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
 }//Main Class

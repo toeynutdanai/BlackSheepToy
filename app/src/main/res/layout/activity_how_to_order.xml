@@ -71,6 +71,7 @@
             android:background="@color/colorblack"
             android:textColor="#fdfcfc"
             android:onClick="onClickCancel" />
+
     </LinearLayout>
 
 </RelativeLayout>

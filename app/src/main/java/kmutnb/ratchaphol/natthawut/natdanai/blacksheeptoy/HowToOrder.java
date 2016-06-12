@@ -9,10 +9,14 @@ import android.widget.Button;
 
 public class HowToOrder extends AppCompatActivity {
 
+    private String strID = new String();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_order);
+
+        strID = getIntent().getStringExtra("ID_User");
 
     }//Main Method
 
@@ -26,7 +30,9 @@ public class HowToOrder extends AppCompatActivity {
     }
 
     public void onClickCancel(View view) {
-        finish();
+        Intent intent = new Intent(HowToOrder.this, ToyListView.class);
+        intent.putExtra("ID_User", strID);
+        startActivity(intent);
     }
 
 

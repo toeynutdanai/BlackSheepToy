@@ -185,9 +185,10 @@ public class OrderToy extends AppCompatActivity {
             //Have Address
             checkProduct();
             uploadOrderToServer();
-            Intent intent = new Intent(OrderToy.this, ToyListView.class);
+            Intent intent = new Intent(OrderToy.this, HowToOrder.class);
             intent.putExtra("ID_User", idString);
             startActivity(intent);
+            finish();
 
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
