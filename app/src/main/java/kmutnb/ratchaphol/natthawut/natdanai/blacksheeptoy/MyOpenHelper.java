@@ -68,7 +68,9 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "Date text," +
             "Sent_To text," +
             "Product text," +
-            "Price text);";
+            "Price text," +
+            "Piece text," +
+            "Total text);";
 
 
 

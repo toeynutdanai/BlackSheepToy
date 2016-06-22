@@ -66,6 +66,8 @@ public class MyManage {
     public static final String colunm_Date = "Date";
     public static final String colunm_Product = "Product";
     public static final String colunm_SentTo = "Sent_To";
+    public static final String column_Piece = "Piece";
+    public static final String column_Total = "Total";
 
     public MyManage(Context context) {
 
@@ -79,13 +81,17 @@ public class MyManage {
                          String strDate,
                          String strSent_To,
                          String strProduct,
-                         String strPrice) {
+                         String strPrice,
+                         String strPiece,
+                         String strTotal) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(colunm_IDuser, strID_User);
         contentValues.put(colunm_Date, strDate);
         contentValues.put(colunm_SentTo, strSent_To);
         contentValues.put(colunm_Product, strProduct);
         contentValues.put(column_Price, strPrice);
+        contentValues.put(column_Piece, strPiece);
+        contentValues.put(column_Total, strTotal);
 
 
 

@@ -11,14 +11,16 @@ public class ReceiveAdapter extends BaseAdapter{
 
     //Explicit
     private Context context;
-    private String[] productStrings, priceStrings;
+    private String[] productStrings, priceStrings, amountStrings;
 
     public ReceiveAdapter(Context context,
                           String[] productStrings,
-                          String[] priceStrings) {
+                          String[] priceStrings,
+                          String[] amountStrings) {
         this.context = context;
         this.productStrings = productStrings;
         this.priceStrings = priceStrings;
+        this.amountStrings = amountStrings;
     }
 
     @Override
@@ -48,6 +50,9 @@ public class ReceiveAdapter extends BaseAdapter{
 
         TextView priceTextView = (TextView) view1.findViewById(R.id.textView21);
         priceTextView.setText(priceStrings[i]);
+
+        TextView amountTextview = (TextView) view1.findViewById(R.id.textView38);
+        amountTextview.setText(amountStrings[i]);
 
         return view1;
     }

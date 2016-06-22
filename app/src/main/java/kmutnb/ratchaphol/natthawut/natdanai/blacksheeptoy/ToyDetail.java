@@ -1,5 +1,7 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +28,7 @@ public class ToyDetail extends AppCompatActivity {
 
     private ImageView imageView;
     private String idString, nameString, brandString, priceString,
-            usedString, stockString, detailString;
+            usedString, stockString, detailString, amountString;
     private String[] imageStrings;
     private int indexAnInt = 0;
     private int cal = 0;
@@ -214,8 +216,36 @@ public class ToyDetail extends AppCompatActivity {
 
     public void clickOrderDetail(View view) {
 
+        int strPiece[] = new int[Integer.parseInt(stockString)];
+        CharSequence[] pieceCharSequence = new CharSequence[Integer.parseInt(stockString)];
 
-            if (checkProduct(nameString) || checkOrderTABLE() == true) {
+        for (int i = 1; i <= Integer.parseInt(stockString); i++ ) {
+            pieceCharSequence[i - 1] = Integer.toString(i);
+        }//for
+
+        AlertDialog.Builder choiceAlert = new AlertDialog.Builder(this);
+        choiceAlert.setSingleChoiceItems(pieceCharSequence, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                amountString = Integer.toString(i + 1);
+            }
+        });
+        choiceAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                uploadOrder();
+
+            }
+        });
+        choiceAlert.show();
+
+
+
+
+
+
+
+            /*if (checkProduct(nameString) || checkOrderTABLE() == true) {
             //True สั่งได้
 
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -234,8 +264,35 @@ public class ToyDetail extends AppCompatActivity {
                  MyAlertDialog myAlertDialog = new MyAlertDialog();
                  myAlertDialog.myDialog(this,R.drawable.icon_myaccount,
                     "ไม่สามารถสั่งซื้อได้" , "มีสินค้าอยู่ในตะกร้าแล้ว");
-        }
+        }*/
     } //clickOrderdetail
+
+    private void uploadOrder() {
+
+        if (checkProduct(nameString) || checkOrderTABLE() == true) {
+            //True สั่งได้
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String strDate = dateFormat.format(date);
+
+        MyManage myManage = new MyManage(this);
+        myManage.addOrder(idString, strDate, "n/a", nameString, priceString, amountString,"n/a");
+
+        Toast.makeText(this, "บันทึก " + nameString + " แล้ว", Toast.LENGTH_SHORT).show();
+        finish();}
+        else {
+            //False สั่งไม่ได้
+
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.myDialog(this,R.drawable.icon_myaccount,
+                    "ไม่สามารถสั่งซื้อได้" , "มีสินค้าอยู่ในตะกร้าแล้ว\n" +
+                            "หากต้องการสั่งเพิ่ม\n" +
+                            "ท่านต้องลบข้อมูลเดิมออกก่อน");
+        }
+
+
+    }
 
     private boolean checkOrderTABLE() {
 

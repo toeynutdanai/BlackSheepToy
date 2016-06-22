@@ -23,6 +23,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +31,7 @@ import java.util.Date;
 public class OrderToy extends AppCompatActivity {
 
     //Explicit
-    private String idString, dateString, receiveNoString, addressString;
+    private String idString, dateString, timeString, receiveNoString, addressString, totalString;
     private TextView nameUserTextView, surnameTextView,
             dateTextView, receiveNoTextView, totalTextView;
     private String[] userStrings;
@@ -51,6 +52,9 @@ public class OrderToy extends AppCompatActivity {
         //Find Date
         findDate();
 
+        //Find Time
+        findTime();
+
         //Find receiveNo
         findReceiveNo();
 
@@ -62,14 +66,23 @@ public class OrderToy extends AppCompatActivity {
 
     private void findReceiveNo() {
 
+        String resultTime = timeString;
         String[] resultStrings = dateString.split("/");
-        receiveNoString = "Ref-" +
-                userStrings[4] + "-" +
-                resultStrings[0] + "-" +
-                resultStrings[1] + "-" +
-                resultStrings[2];
+        receiveNoString =
+                userStrings[0] +
+                        resultStrings[0] +
+                        resultStrings[1] +
+                        resultStrings[2] +
+                        resultTime;
 
         receiveNoTextView.setText(receiveNoString);
+
+    }
+
+    private void findTime() {
+        Date time = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("HHmm");
+        timeString = dateFormat.format(time);
 
     }
 
@@ -84,15 +97,19 @@ public class OrderToy extends AppCompatActivity {
 
         String[] productStrings = new String[cursor.getCount()];
         String[] priceStrings = new String[cursor.getCount()];
+        String[] amountStrings = new String[cursor.getCount()];
+        int[] amountInts = new int[cursor.getCount()];
         int[] priceInts = new int[cursor.getCount()];
 
         for (int i=0;i<cursor.getCount();i++) {
 
             productStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.colunm_Product));
             priceStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Price));
+            amountStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Piece));
+            amountInts[i] = Integer.parseInt(amountStrings[i]);
             priceInts[i] = Integer.parseInt(priceStrings[i]);
 
-            intTotal = intTotal + priceInts[i];
+            intTotal = intTotal + (priceInts[i] * amountInts[i]);
 
             cursor.moveToNext();
         }   // for
@@ -101,7 +118,7 @@ public class OrderToy extends AppCompatActivity {
         totalTextView.setText(Integer.toString(intTotal));
 
         ReceiveAdapter receiveAdapter = new ReceiveAdapter(this,
-                productStrings, priceStrings);
+                productStrings, priceStrings, amountStrings);
         listView.setAdapter(receiveAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -175,12 +192,13 @@ public class OrderToy extends AppCompatActivity {
     public void clickCheckBill(View view) {
 
         addressString = editText.getText().toString().trim();
+        totalString = totalTextView.getText().toString().trim();
 
         if (addressString.equals("")) {
             //Not Fill Address
             MyAlertDialog myAlertDialog = new MyAlertDialog();
             myAlertDialog.myDialog(this, R.drawable.danger,
-                    "ส่งที่ไหน ?", "โปรดระบุสถานที่ส่งของด้วยคะ");
+                    "ส่งที่ไหน ?", "โปรดระบุสถานที่ส่งของด้วยครับ");
         } else {
             //Have Address
             checkProduct();
@@ -210,11 +228,12 @@ public class OrderToy extends AppCompatActivity {
         int count = cursor.getCount();
         Log.i("Count order", Integer.toString(count));
         String[] NameProduct = new String[count];
+        String[] Amount = new String[count];
 
         for (int i = 0 ; i< count ; i++) {
 
             NameProduct[i] = cursor.getString(cursor.getColumnIndex("Product"));
-            //NameProduct[i] = cursor.getString(cursor.getColumnIndex("Product"));
+            Amount[i] = cursor.getString(cursor.getColumnIndex("Piece"));
             cursor.moveToNext();
             Log.i("NameProduct/11", NameProduct[i]);
         }//for รับค่า NameProduct
@@ -222,9 +241,7 @@ public class OrderToy extends AppCompatActivity {
 
         for (int i = 0; i< count; i++) {
             Log.i("Namestring[0]", NameProduct[0]);
-            Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Name = "+"'"+ NameProduct[i]+"'",null);
-            //Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE 'Name' ="
-            //        + "'" + NameProduct[i] + "'", null);
+            Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Name = " + "'" + NameProduct[i] + "'", null);
             cursor1.moveToFirst();
 
             int check = cursor1.getCount();
@@ -232,7 +249,8 @@ public class OrderToy extends AppCompatActivity {
 
 
             String Stock = cursor1.getString(cursor1.getColumnIndex("Stock"));
-            int Stocknow = Integer.parseInt(Stock) - 1;
+
+            int Stocknow = Integer.parseInt(Stock) - Integer.parseInt(Amount[i]);
 
             Log.i("Stock", Stock);
             Log.i("Stocknow", Integer.toString(Stocknow));
@@ -303,6 +321,9 @@ public class OrderToy extends AppCompatActivity {
                             colunm_Product)))
                     .add("Price", cursor.getString(cursor.getColumnIndex(MyManage.
                             column_Price)))
+                    .add("Piece", cursor.getString(cursor.getColumnIndex(MyManage.
+                            column_Piece)))
+                    .add("Total", totalString)
                     .build();
             Request.Builder builder = new Request.Builder();
             Request request = builder.url(strURL).post(requestBody).build();
