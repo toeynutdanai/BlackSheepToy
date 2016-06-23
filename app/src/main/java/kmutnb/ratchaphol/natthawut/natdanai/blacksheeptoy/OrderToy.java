@@ -324,6 +324,8 @@ public class OrderToy extends AppCompatActivity {
                     .add("Piece", cursor.getString(cursor.getColumnIndex(MyManage.
                             column_Piece)))
                     .add("Total", totalString)
+                    .add("Status", "รอชำระ")
+                    .add("IDUser", idString)
                     .build();
             Request.Builder builder = new Request.Builder();
             Request request = builder.url(strURL).post(requestBody).build();

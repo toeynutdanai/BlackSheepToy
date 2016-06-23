@@ -72,6 +72,19 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "Piece text," +
             "Total text);";
 
+    private static final String create_order1_table = "create table order1TABLE(" +
+            "_id integer primary key," +
+            "billNo text," +
+            "Date1 text," +
+            "Name1 text," +
+            "Surname1 text," +
+            "Address text," +
+            "Product1 text," +
+            "Price1 text," +
+            "Piece1 text," +
+            "Total1 text," +
+            "Status text);";
+
 
 
 
@@ -84,6 +97,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(create_product_table);
         sqLiteDatabase.execSQL(create_user_table);
         sqLiteDatabase.execSQL(create_order_table);
+        sqLiteDatabase.execSQL(create_order1_table);
 
     }
 

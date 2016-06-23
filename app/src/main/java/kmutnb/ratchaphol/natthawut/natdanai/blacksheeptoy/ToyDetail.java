@@ -28,7 +28,8 @@ public class ToyDetail extends AppCompatActivity {
 
     private ImageView imageView;
     private String idString, nameString, brandString, priceString,
-            usedString, stockString, detailString, amountString;
+            usedString, stockString, detailString;
+    private String amountString = "1";
     private String[] imageStrings;
     private int indexAnInt = 0;
     private int cal = 0;
@@ -216,7 +217,6 @@ public class ToyDetail extends AppCompatActivity {
 
     public void clickOrderDetail(View view) {
 
-        int strPiece[] = new int[Integer.parseInt(stockString)];
         CharSequence[] pieceCharSequence = new CharSequence[Integer.parseInt(stockString)];
 
         for (int i = 1; i <= Integer.parseInt(stockString); i++ ) {
@@ -224,7 +224,7 @@ public class ToyDetail extends AppCompatActivity {
         }//for
 
         AlertDialog.Builder choiceAlert = new AlertDialog.Builder(this);
-        choiceAlert.setSingleChoiceItems(pieceCharSequence, -1, new DialogInterface.OnClickListener() {
+        choiceAlert.setSingleChoiceItems(pieceCharSequence, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 amountString = Integer.toString(i + 1);
@@ -233,10 +233,20 @@ public class ToyDetail extends AppCompatActivity {
         choiceAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
                 uploadOrder();
 
             }
         });
+        choiceAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+
+            }
+        });
+
         choiceAlert.show();
 
 

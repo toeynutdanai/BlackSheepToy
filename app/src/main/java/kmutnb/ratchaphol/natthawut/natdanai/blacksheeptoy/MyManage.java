@@ -69,6 +69,9 @@ public class MyManage {
     public static final String column_Piece = "Piece";
     public static final String column_Total = "Total";
 
+    public static final String order1_table = "order1TABLE";
+
+
     public MyManage(Context context) {
 
         myOpenHelper = new MyOpenHelper(context);
@@ -96,6 +99,27 @@ public class MyManage {
 
 
         return sqLiteDatabase.insert(order_table, null, contentValues);
+    }
+
+    public long addOrder1(String strID_User,
+                         String strDate,
+                         String strSent_To,
+                         String strProduct,
+                         String strPrice,
+                         String strPiece,
+                         String strTotal) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(colunm_IDuser, strID_User);
+        contentValues.put(colunm_Date, strDate);
+        contentValues.put(colunm_SentTo, strSent_To);
+        contentValues.put(colunm_Product, strProduct);
+        contentValues.put(column_Price, strPrice);
+        contentValues.put(column_Piece, strPiece);
+        contentValues.put(column_Total, strTotal);
+
+
+
+        return sqLiteDatabase.insert(order1_table, null, contentValues);
     }
 
     public long addProduct(String strName,
