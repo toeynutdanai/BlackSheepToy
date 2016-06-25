@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -32,41 +33,73 @@ public class History extends AppCompatActivity {
         final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
         final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM historyTABLE WHERE IDUser =" + "'" +
-                strID + "'",null);
+                strID + "'", null);
         cursor.moveToFirst();
 
-        String[] Ref = new String[cursor.getCount()];
-        String[] IDUser = new String[cursor.getCount()];
-        String[] Date = new String[cursor.getCount()];
-        String[] Name = new String[cursor.getCount()];
-        String[] Surname = new String[cursor.getCount()];
-        String[] Address = new String[cursor.getCount()];
-        String[] Product = new String[cursor.getCount()];
-        String[] Price = new String[cursor.getCount()];
-        String[] Piece = new String[cursor.getCount()];
-        String[] Total = new String[cursor.getCount()];
-        String[] Status = new String[cursor.getCount()];
 
-        //for (int i = 0; i < cursor.getCount(); i++) {
-            int count = cursor.getCount();
-        //}
+        int count = cursor.getCount();
+        Log.d("Countเดิมนะ", Integer.toString(count));
+        String[] Bill = new String[count];
 
-        for (int i=0;i<cursor.getCount();i++) {
+        for (int i = 0; i < cursor.getCount(); i++ ) {
+            Bill[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Ref));
+            Log.d("Bill", Bill[0]);
+            if (i > 1 && Bill[i].matches(Bill[i - 1])) {
+                count--;
+                Log.d("Countนะ", Integer.toString(count));
+                cursor.moveToNext();
 
+            } else {
+                cursor.moveToNext();
+            }
+
+        }
+        cursor.moveToFirst();
+
+        String[] Ref = new String[count];
+        String[] IDUser = new String[count];
+        String[] Date = new String[count];
+        String[] Name = new String[count];
+        String[] Surname = new String[count];
+        String[] Address = new String[count];
+        String[] Product = new String[count];
+        String[] Price = new String[count];
+        String[] Piece = new String[count];
+        String[] Total = new String[count];
+        String[] Status = new String[count];
+
+        Log.d("Count ==>", Integer.toString(count));
+
+        for (int i = 0; i < count;) {
+            Log.d("iนะ", Integer.toString(i));
             Ref[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Ref));
-            IDUser[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_IDuser));
-            Date[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Date));
-            Name[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Name));
-            Surname[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Surname));
-            Address[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Address));
-            Product[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Product));
-            Price[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Price));
-            Piece[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Piece));
-            Total[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Total));
-            Status[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Status));
+            Log.d("ErrorArai", Ref[i]);
+            if (i > 1 && Ref[i].matches(Ref[i - 1])) {
+                cursor.moveToNext();
 
-            cursor.moveToNext();
-        }   // for
+            } else {
+                IDUser[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_IDuser));
+                Date[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Date));
+                Name[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Name));
+                Surname[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Surname));
+                Address[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Address));
+                Product[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Product));
+                Log.d("Product", Product[i]);
+                Price[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Price));
+                Piece[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Piece));
+                Total[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Total));
+                Status[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Status));
+
+                i++;
+
+                cursor.moveToNext();
+
+            }
+
+
+
+        }
+
         cursor.close();
 
         HistoryAdapter historyAdapter = new HistoryAdapter(this,Ref,IDUser,Date,Name,
@@ -76,6 +109,7 @@ public class History extends AppCompatActivity {
 
 
     }
+
 
     public void clickCancel(View view) {
         Intent intent = new Intent(History.this, ToyListView.class);
