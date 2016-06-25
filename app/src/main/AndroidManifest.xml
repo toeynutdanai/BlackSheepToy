@@ -22,7 +22,8 @@
         <activity android:name=".ToyDetail" />
         <activity android:name=".OrderToy" />
         <activity android:name=".HowToOrder" />
-        <activity android:name=".History"></activity>
+        <activity android:name=".History" />
+        <activity android:name=".OrderDetail"></activity>
     </application>
 
 </manifest>
