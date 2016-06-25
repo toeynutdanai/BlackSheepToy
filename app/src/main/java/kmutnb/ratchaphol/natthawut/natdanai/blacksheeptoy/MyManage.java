@@ -66,11 +66,21 @@ public class MyManage {
     public static final String colunm_Date = "Date";
     public static final String colunm_Product = "Product";
     public static final String colunm_SentTo = "Sent_To";
+    //public static final String column_Piece = "Piece";
+    //public static final String column_Total = "Total";
+
+    public static final String history_table = "historyTABLE";
+    public static final String column_Ref = "Ref";
+    public static final String column_IDuser = "IDUser";
+    public static final String column_Date = "Date";
+    //public static final String column_Name = "Name";
+    //public static final String column_Surname = "Surname";
+    public static final String column_Address = "Address";
+    public static final String column_Product = "Product";
+    //public static final String column_Price = "Price";
     public static final String column_Piece = "Piece";
     public static final String column_Total = "Total";
-
-    public static final String order1_table = "order1TABLE";
-
+    public static final String column_Status = "Status";
 
     public MyManage(Context context) {
 
@@ -80,7 +90,7 @@ public class MyManage {
 
     } //Constructor
 
-    public long addOrder(String strID_User,
+    public long addOrder(String strIDUser,
                          String strDate,
                          String strSent_To,
                          String strProduct,
@@ -88,7 +98,7 @@ public class MyManage {
                          String strPiece,
                          String strTotal) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(colunm_IDuser, strID_User);
+        contentValues.put(colunm_IDuser, strIDUser);
         contentValues.put(colunm_Date, strDate);
         contentValues.put(colunm_SentTo, strSent_To);
         contentValues.put(colunm_Product, strProduct);
@@ -101,25 +111,31 @@ public class MyManage {
         return sqLiteDatabase.insert(order_table, null, contentValues);
     }
 
-    public long addOrder1(String strID_User,
-                         String strDate,
-                         String strSent_To,
-                         String strProduct,
-                         String strPrice,
-                         String strPiece,
-                         String strTotal) {
+    public long addHistory(String strbillNo,
+                          String strIDUser,
+                          String strDate,
+                          String strNameHis,
+                          String strSurnameHis,
+                          String strAddress,
+                          String strProduct,
+                          String strPriceHis,
+                          String strPiece,
+                          String strTotal,
+                          String strStatus) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(colunm_IDuser, strID_User);
-        contentValues.put(colunm_Date, strDate);
-        contentValues.put(colunm_SentTo, strSent_To);
-        contentValues.put(colunm_Product, strProduct);
-        contentValues.put(column_Price, strPrice);
+        contentValues.put(column_Ref, strbillNo);
+        contentValues.put(column_IDuser, strIDUser);
+        contentValues.put(column_Date, strDate);
+        contentValues.put(column_Name, strNameHis);
+        contentValues.put(column_Surname, strSurnameHis);
+        contentValues.put(column_Address, strAddress);
+        contentValues.put(column_Product, strProduct);
+        contentValues.put(column_Price, strPriceHis);
         contentValues.put(column_Piece, strPiece);
         contentValues.put(column_Total, strTotal);
+        contentValues.put(column_Status, strStatus);
 
-
-
-        return sqLiteDatabase.insert(order1_table, null, contentValues);
+        return sqLiteDatabase.insert(history_table, null, contentValues);
     }
 
     public long addProduct(String strName,

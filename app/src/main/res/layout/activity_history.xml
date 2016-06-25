@@ -34,7 +34,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Back"
         android:id="@+id/button11"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:onClick="clickCancel"
+        android:singleLine="false"
+        android:textColor="#ffffff"
+        android:background="#000000"
+        android:textSize="@dimen/h2"
+        android:textStyle="bold" />
 </RelativeLayout>

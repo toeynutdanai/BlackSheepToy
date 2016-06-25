@@ -187,6 +187,12 @@ public class ToyListView extends AppCompatActivity {
 
     } // Main Method
 
+    public void clickHistory(View view) {
+        Intent intent = new Intent(ToyListView.this, History.class);
+        intent.putExtra("ID_User", strID);
+        startActivity(intent);
+    }
+
     public void clickHowtoOrder(View view) {
 
         Intent intent = new Intent(ToyListView.this, HowToOrder.class);

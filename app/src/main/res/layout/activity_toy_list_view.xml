@@ -11,6 +11,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="History"
+                android:id="@+id/button12"
+                android:textSize="@dimen/h3"
+                android:background="#b9010000"
+                android:textColor="#baffffff"
+                android:textStyle="bold"
+                android:onClick="clickHistory" />
+        </LinearLayout>
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,6 +37,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp" />
+
     </LinearLayout>
 
     <LinearLayout

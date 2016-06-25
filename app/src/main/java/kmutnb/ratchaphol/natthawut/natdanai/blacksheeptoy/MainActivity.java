@@ -130,13 +130,14 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(threadPolicy);
 
         int intTABLE = 0;
-        while (intTABLE <=1) {
+        while (intTABLE <= 2) {
 
             InputStream inputStream = null;
             String strJSON = null;
             String strLine = null;
             String[] urlJSONStrings = {"http://swiftcodingthai.com/sheep/php_get_user.php",
-                    "http://swiftcodingthai.com/sheep/php_get_product.php"};
+                    "http://swiftcodingthai.com/sheep/php_get_product.php",
+                    "http://swiftcodingthai.com/sheep/php_get_order.php"};
 
             try {
 
@@ -159,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
                 strJSON = stringBuilder.toString();
 
                 JSONArray jsonArray = new JSONArray(strJSON);
+
+                Log.d("jsonArrayEiEi", Integer.toString(jsonArray.length()));
+
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -176,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
                             myManage.addUser(strID, strName, strSurname, strIDcard, strUser,
                                     strPassword, strEmail, strPhone);
+
                             break;
                         case 1:
 
@@ -230,8 +235,31 @@ public class MainActivity extends AppCompatActivity {
                                     strImage27, strImage28, strImage29,
                                     strImage30, strImage31, strImage32);
 
+
                             break;
+                        case 2:
+
+                            String strbillNo = jsonObject.getString(MyManage.column_Ref);
+                            String strIDuser = jsonObject.getString(MyManage.column_IDuser);
+                            String strDate = jsonObject.getString(MyManage.column_Date);
+                            String strNameHis = jsonObject.getString(MyManage.column_Name);
+                            String strSurnameHis = jsonObject.getString(MyManage.column_Surname);
+                            String strAddress = jsonObject.getString(MyManage.column_Address);
+                            String strProduct = jsonObject.getString(MyManage.column_Product);
+                            String strPriceHis = jsonObject.getString(MyManage.column_Price);
+                            String strPiece = jsonObject.getString(MyManage.column_Piece);
+                            String strTotal = jsonObject.getString(MyManage.column_Total);
+                            String strStatus = jsonObject.getString(MyManage.column_Status);
+
+
+                            myManage.addHistory(strbillNo, strIDuser, strDate, strNameHis,
+                                    strSurnameHis, strAddress, strProduct, strPriceHis, strPiece,
+                                    strTotal, strStatus);
+
+                            break;
+
                     } // switch
+
                 } //for
 
 
@@ -252,6 +280,7 @@ public class MainActivity extends AppCompatActivity {
         sqLiteDatabase.delete(MyManage.product_table, null, null);
         sqLiteDatabase.delete(MyManage.user_table, null, null);
         sqLiteDatabase.delete(MyManage.order_table, null, null);
+        sqLiteDatabase.delete(MyManage.history_table, null, null);
     }
 
     public void clickSignUp(View view) {
