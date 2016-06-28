@@ -228,8 +228,9 @@ public class OrderToy extends AppCompatActivity {
             checkProduct();
             updateHistory();
             uploadOrderToServer();
-            Intent intent = new Intent(OrderToy.this, HowToOrder.class);
+            Intent intent = new Intent(OrderToy.this, OrderDetail.class);
             intent.putExtra("ID_User", idString);
+            intent.putExtra("Ref", receiveNoString);
             startActivity(intent);
             finish();
 

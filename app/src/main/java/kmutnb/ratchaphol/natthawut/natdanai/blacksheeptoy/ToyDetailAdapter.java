@@ -13,7 +13,7 @@ public class ToyDetailAdapter extends BaseAdapter {
 
     //Explicit
     private Context context;
-    private String[] productStr, priceStr, vatStr, shippingStr, pieceStr, netStr;
+    private String[] productStr, priceStr, vatStr, shippingStr, pieceStr, netStr, usedStr, allStr;
 
     public ToyDetailAdapter(Context context,
                             String[] productStr,
@@ -21,7 +21,9 @@ public class ToyDetailAdapter extends BaseAdapter {
                             String[] vatStr,
                             String[] shippingStr,
                             String[] pieceStr,
-                            String[] netStr) {
+                            String[] netStr,
+                            String[] usedStr,
+                            String[] allStr) {
         this.context = context;
         this.productStr = productStr;
         this.priceStr = priceStr;
@@ -29,6 +31,8 @@ public class ToyDetailAdapter extends BaseAdapter {
         this.shippingStr = shippingStr;
         this.pieceStr = pieceStr;
         this.netStr = netStr;
+        this.usedStr = usedStr;
+        this.allStr = allStr;
     }
 
     @Override
@@ -56,15 +60,20 @@ public class ToyDetailAdapter extends BaseAdapter {
         TextView productTextView = (TextView) view1.findViewById(R.id.textView57);
         productTextView.setText(productStr[i]);
         TextView priceTextView = (TextView) view1.findViewById(R.id.textView58);
-        priceTextView.setText(priceStr[i]);
+        priceTextView.setText("Price : " + priceStr[i]+" บาท");
         TextView vatTextView = (TextView) view1.findViewById(R.id.textView59);
-        vatTextView.setText(vatStr[i]);
+        vatTextView.setText("Vat : "+vatStr[i]+" บาท");
         TextView shippingTextView = (TextView) view1.findViewById(R.id.textView60);
-        shippingTextView.setText(shippingStr[i]);
+        shippingTextView.setText("Shipping : "+shippingStr[i]+" บาท");
         TextView pieceTextView = (TextView) view1.findViewById(R.id.textView61);
-        pieceTextView.setText(pieceStr[i]);
+        pieceTextView.setText("Piece : " + pieceStr[i]+" ชิ้น");
         TextView netTextView = (TextView) view1.findViewById(R.id.textView62);
-        netTextView.setText(netStr[i]);
+        netTextView.setText("Net : " + netStr[i]+" บาท");
+        TextView usedTextView = (TextView) view1.findViewById(R.id.textView65);
+        usedTextView.setText(usedStr[i]);
+
+        TextView allTextView = (TextView) view1.findViewById(R.id.textView66);
+        allTextView.setText("รวมทั้งสิ้น :" + allStr[i] +" บาท");
 
         Log.d("iAdapter", Integer.toString(i));
         Log.d("ProductString Adaoter", productStr[0]);

@@ -1,5 +1,6 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +49,10 @@ public class OrderDetail extends AppCompatActivity {
         final String[] shippingStr = new String[count];
         final String[] pieceStr = new String[count];
         final String[] netStr = new String[count];
+        final String[] usedStr = new String[count];
+        final String[] allStr = new String[count];
+
+
 
         for (int i = 0; i < count; i++) {
             productStr[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Product));
@@ -56,6 +61,13 @@ public class OrderDetail extends AppCompatActivity {
                     + "'" + productStr[i] + "'", null);
             cursor1.moveToFirst();
 
+
+            String usedStr1 = cursor1.getString(cursor1.getColumnIndex(MyManage.column_Used));
+            if (usedStr1.matches("1")) {
+                usedStr[i] = "สินค้าใหม่";
+            } else {
+                usedStr[i] = "สินค้ามือสอง";
+            }
             Log.d("productTable", Integer.toString(cursor1.getCount()));
             netStr[i] = cursor1.getString(cursor1.getColumnIndex(MyManage.column_Price));
             pieceStr[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Piece));
@@ -71,6 +83,8 @@ public class OrderDetail extends AppCompatActivity {
             int priceOri = Integer.parseInt(netStr[i]) - Integer.parseInt(shippingStr[i])
                     - Math.round(Vat);
             priceStr[i] = Integer.toString(priceOri);
+            int all = Integer.parseInt(netStr[i]) * Integer.parseInt(pieceStr[i]);
+            allStr[i] = Integer.toString(all);
 
             cursor.moveToNext();
             cursor1.close();
@@ -81,7 +95,7 @@ public class OrderDetail extends AppCompatActivity {
         Log.d("ProductStr ==>", productStr[0]);
 
         ToyDetailAdapter toyDetailAdapter = new ToyDetailAdapter(this, productStr,
-                priceStr, vatStr, shippingStr, pieceStr, netStr);
+                priceStr, vatStr, shippingStr, pieceStr, netStr, usedStr, allStr);
 
         listView.setAdapter(toyDetailAdapter);
     }
@@ -108,25 +122,38 @@ public class OrderDetail extends AppCompatActivity {
         surnameTextView.setText(surnameStr);
         addressTextView.setText(addressStr);
         statusTextView.setText(statusStr);
-        totalTextView.setText(totalStr);
+        totalTextView.setText(totalStr +" บาท");
     }
 
     private void recieveValue() {
-
         strId = getIntent().getStringExtra("ID_User");
-        dateStr = getIntent().getStringExtra("Date");
         refStr = getIntent().getStringExtra("Ref");
-        nameStr = getIntent().getStringExtra("Name");
-        surnameStr = getIntent().getStringExtra("Surname");
-        addressStr = getIntent().getStringExtra("Address");
-        statusStr = getIntent().getStringExtra("Status");
-        totalStr = getIntent().getStringExtra("Total");
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM historyTABLE WHERE Ref ="
+                + "'" + refStr + "'", null);
+        cursor.moveToFirst();
+
+        dateStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Date));
+        Log.d("date == >", dateStr);
+        nameStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Name));
+        surnameStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Surname));
+        addressStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Address));
+        statusStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Status));
+        totalStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Total));
+
+
+
+
+        cursor.close();
 
     }
 
     public void onclickOk(View view) {
 
-        finish();
+        Intent intent = new Intent(OrderDetail.this, History.class);
+        intent.putExtra("ID_User", strId);
+        startActivity(intent);
 
     }
 

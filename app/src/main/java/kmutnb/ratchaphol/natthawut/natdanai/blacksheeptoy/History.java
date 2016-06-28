@@ -114,13 +114,7 @@ public class History extends AppCompatActivity {
                 Intent intent = new Intent(History.this, OrderDetail.class);
 
                 intent.putExtra("ID_User", strID);
-                intent.putExtra("Date", Date[position]);
                 intent.putExtra("Ref", Ref[position]);
-                intent.putExtra("Name", Name[position]);
-                intent.putExtra("Surname", Surname[position]);
-                intent.putExtra("Address", Address[position]);
-                intent.putExtra("Total", Total[position]);
-                intent.putExtra("Status", Status[position]);
 
                 startActivity(intent);
 
