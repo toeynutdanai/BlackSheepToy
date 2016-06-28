@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         if (userString.equals("") || passwordString.equals("")) {
 
             MyAlertDialog myAlertDialog = new MyAlertDialog();
-            myAlertDialog.myDialog(this,R.drawable.icon_myaccount,
+            myAlertDialog.myDialog(this,R.drawable.danger,
                     "มีช่องว่าง","กรุณากรอกทุกช่องค่ะ");
 
         } else {
@@ -108,14 +108,14 @@ public class MainActivity extends AppCompatActivity {
             } else {
 
                 MyAlertDialog myAlertDialog = new MyAlertDialog();
-                myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
+                myAlertDialog.myDialog(this, R.drawable.danger,
                         "Password False", " password ผิด \n กรุณากรอกใหม่ให้ถูกต้องด้วยครับ");
 
             }
 
         } catch (Exception e) {
             MyAlertDialog myAlertDialog = new MyAlertDialog();
-            myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
+            myAlertDialog.myDialog(this, R.drawable.danger,
                     "ไม่มี User นี้","ไม่มี" + userString + "ในฐานข้อมูลของเรา");
         }
 

@@ -225,6 +225,7 @@ public class ToyDetail extends AppCompatActivity {
 
         AlertDialog.Builder choiceAlert = new AlertDialog.Builder(this);
         choiceAlert.setTitle("ต้องการสั่งกี่ชิ้น");
+        choiceAlert.setIcon(R.drawable.icon_myaccount);
         choiceAlert.setSingleChoiceItems(pieceCharSequence, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -274,7 +275,7 @@ public class ToyDetail extends AppCompatActivity {
             //False สั่งไม่ได้
 
             MyAlertDialog myAlertDialog = new MyAlertDialog();
-            myAlertDialog.myDialog(this,R.drawable.icon_myaccount,
+            myAlertDialog.myDialog(this,R.drawable.danger,
                     "ไม่สามารถสั่งซื้อได้" , "มีสินค้าอยู่ในตะกร้าแล้ว\n" +
                             "หากต้องการสั่งเพิ่ม\n" +
                             "ท่านต้องลบข้อมูลเดิมออกก่อน");
