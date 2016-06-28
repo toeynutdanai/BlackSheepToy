@@ -167,7 +167,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView4"
             android:background="@drawable/view"
-            android:layout_margin="10dp" />
+            android:layout_weight="0.2"
+            android:layout_marginRight="2dp" />
 
         <ImageView
             android:layout_width="250dp"
@@ -176,14 +177,16 @@
             android:layout_below="@+id/linearLayout2"
             android:layout_centerHorizontal="true"
 
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView3"
             android:background="@drawable/view"
-            android:layout_margin="10dp" />
+            android:layout_weight="0.2"
+            android:layout_marginLeft="2dp" />
 
     </LinearLayout>
 
