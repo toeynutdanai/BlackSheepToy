@@ -28,6 +28,8 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "Price text," +
             "Stock text," +
             "Used text," +
+            "Vat text," +
+            "Shipping text," +
             "Detail text," +
             "Image1 text," +
             "Image2 text," +

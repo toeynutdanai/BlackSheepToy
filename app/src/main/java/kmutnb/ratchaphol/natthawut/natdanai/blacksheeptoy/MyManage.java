@@ -27,6 +27,8 @@ public class MyManage {
     public static final String column_Price = "Price";
     public static final String column_Stock = "Stock";
     public static final String column_Used = "Used";
+    public static final String column_Vat = "Vat";
+    public static final String column_Shipping = "Shipping";
     public static final String column_Detail = "Detail";
     public static final String column_Image1 = "Image1";
     public static final String column_Image2 = "Image2";
@@ -143,6 +145,8 @@ public class MyManage {
                            String strPrice,
                            String strStock,
                            String strUsed,
+                           String strVat,
+                           String strShipping,
                            String strDetail,
                            String strImage1,
                            String strImage2,
@@ -182,6 +186,8 @@ public class MyManage {
         contentValues.put(column_Price, strPrice);
         contentValues.put(column_Stock, strStock);
         contentValues.put(column_Used, strUsed);
+        contentValues.put(column_Vat, strVat);
+        contentValues.put(column_Shipping, strShipping);
         contentValues.put(column_Detail, strDetail);
         contentValues.put(column_Image1, strImage1);
         contentValues.put(column_Image2, strImage2);

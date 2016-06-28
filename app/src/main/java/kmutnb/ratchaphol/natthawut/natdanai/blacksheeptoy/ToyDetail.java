@@ -137,7 +137,7 @@ public class ToyDetail extends AppCompatActivity {
 
     private String findUsed(String usedString) {
 
-        String[] resultStrings = {"", "มือ 1", "มือ 2"};
+        String[] resultStrings = {"", "สินค้าใหม่", "สินค้ามือ 2"};
         int index = Integer.parseInt(usedString);
 
         return resultStrings[index];

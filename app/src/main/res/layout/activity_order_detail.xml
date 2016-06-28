@@ -103,7 +103,10 @@
                 android:text="New Text"
                 android:id="@+id/textView46"
                 android:textSize="@dimen/h2"
-                android:layout_margin="2dp" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp" />
         </LinearLayout>
 
         <TextView
@@ -130,7 +133,25 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right">
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status :"
+                android:id="@+id/textView63"
+                android:textSize="@dimen/h2"
+                android:layout_gravity="left"
+                android:layout_margin="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView64"
+                android:textSize="@dimen/h2"
+                android:layout_gravity="left"
+                android:layout_margin="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -138,7 +159,10 @@
                 android:text="Total :"
                 android:id="@+id/textView53"
                 android:textSize="@dimen/h2"
-                android:layout_margin="2dp" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -147,6 +171,7 @@
                 android:id="@+id/textView54"
                 android:textSize="@dimen/h2"
                 android:layout_margin="2dp" />
+
         </LinearLayout>
 
         <LinearLayout

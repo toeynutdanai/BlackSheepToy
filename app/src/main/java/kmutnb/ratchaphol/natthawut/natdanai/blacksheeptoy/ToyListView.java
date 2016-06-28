@@ -188,9 +188,16 @@ public class ToyListView extends AppCompatActivity {
     } // Main Method
 
     public void clickHistory(View view) {
-        Intent intent = new Intent(ToyListView.this, History.class);
-        intent.putExtra("ID_User", strID);
-        startActivity(intent);
+        if (checkHistory() == false) {
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
+                    "ยังไม่มีประวัติการสั่งซื้อ", "โปรดเลือกสินค้า");
+        } else {
+            Intent intent = new Intent(ToyListView.this, History.class);
+            intent.putExtra("ID_User", strID);
+            startActivity(intent);
+        }
+
     }
 
     public void clickHowtoOrder(View view) {
@@ -199,6 +206,20 @@ public class ToyListView extends AppCompatActivity {
         intent.putExtra("ID_User", strID);
         startActivity(intent);
 
+    }
+
+    public boolean checkHistory() {
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE,null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM historyTABLE WHERE IDUser ="
+                + "'" + strID + "'", null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount() == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void clickReadOrder(View view) {

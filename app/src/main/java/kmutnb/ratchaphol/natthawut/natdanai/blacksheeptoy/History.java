@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.AdapterView;
 
 public class History extends AppCompatActivity {
 
@@ -56,17 +57,17 @@ public class History extends AppCompatActivity {
         }
         cursor.moveToFirst();
 
-        String[] Ref = new String[count];
+        final String[] Ref = new String[count];
         String[] IDUser = new String[count];
-        String[] Date = new String[count];
-        String[] Name = new String[count];
-        String[] Surname = new String[count];
-        String[] Address = new String[count];
+        final String[] Date = new String[count];
+        final String[] Name = new String[count];
+        final String[] Surname = new String[count];
+        final String[] Address = new String[count];
         String[] Product = new String[count];
         String[] Price = new String[count];
         String[] Piece = new String[count];
-        String[] Total = new String[count];
-        String[] Status = new String[count];
+        final String[] Total = new String[count];
+        final String[] Status = new String[count];
 
         Log.d("Count ==>", Integer.toString(count));
 
@@ -97,7 +98,6 @@ public class History extends AppCompatActivity {
             }
 
 
-
         }
 
         cursor.close();
@@ -106,6 +106,26 @@ public class History extends AppCompatActivity {
                 Surname,Address,Product,Price,Piece,Total,Status);
 
         listView.setAdapter(historyAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(History.this, OrderDetail.class);
+
+                intent.putExtra("ID_User", strID);
+                intent.putExtra("Date", Date[position]);
+                intent.putExtra("Ref", Ref[position]);
+                intent.putExtra("Name", Name[position]);
+                intent.putExtra("Surname", Surname[position]);
+                intent.putExtra("Address", Address[position]);
+                intent.putExtra("Total", Total[position]);
+                intent.putExtra("Status", Status[position]);
+
+                startActivity(intent);
+
+            }//on item click
+        });
 
 
     }
