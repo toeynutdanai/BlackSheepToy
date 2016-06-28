@@ -153,26 +153,50 @@
             android:textColor="#030303" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="250dp"
-        android:layout_height="350dp"
-        android:id="@+id/imageView2"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout2"
-        android:layout_centerHorizontal="true"
+        android:layout_alignWithParentIfMissing="false"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/linearLayout3">
 
-        android:layout_marginTop="5dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView4"
+            android:background="@drawable/view"
+            android:layout_margin="10dp" />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="350dp"
+            android:id="@+id/imageView2"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView3"
+            android:background="@drawable/view"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/scrollView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="2dp"
         android:layout_marginRight="15dp"
-        android:layout_below="@+id/imageView2"
-        android:layout_above="@+id/linearLayout4">
+        android:layout_above="@+id/linearLayout4"
+        android:layout_below="@+id/linearLayout3">
 
         <TextView
             android:layout_width="wrap_content"

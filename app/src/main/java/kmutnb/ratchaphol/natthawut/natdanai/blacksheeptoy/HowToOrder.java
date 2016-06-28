@@ -16,7 +16,6 @@ public class HowToOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_order);
 
-        strID = getIntent().getStringExtra("ID_User");
 
     }//Main Method
 
@@ -30,9 +29,8 @@ public class HowToOrder extends AppCompatActivity {
     }
 
     public void onClickCancel(View view) {
-        Intent intent = new Intent(HowToOrder.this, ToyListView.class);
-        intent.putExtra("ID_User", strID);
-        startActivity(intent);
+
+        finish();
     }
 
 

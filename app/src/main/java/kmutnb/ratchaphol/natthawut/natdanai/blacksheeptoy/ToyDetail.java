@@ -224,6 +224,7 @@ public class ToyDetail extends AppCompatActivity {
         }//for
 
         AlertDialog.Builder choiceAlert = new AlertDialog.Builder(this);
+        choiceAlert.setTitle("ต้องการสั่งกี่ชิ้น");
         choiceAlert.setSingleChoiceItems(pieceCharSequence, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -253,28 +254,6 @@ public class ToyDetail extends AppCompatActivity {
 
 
 
-
-
-            /*if (checkProduct(nameString) || checkOrderTABLE() == true) {
-            //True สั่งได้
-
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                Date date = new Date();
-                String strDate = dateFormat.format(date);
-
-                MyManage myManage = new MyManage(this);
-                myManage.addOrder(idString, strDate, "n/a", nameString, priceString);
-
-                Toast.makeText(this, "บันทึก" + nameString + "แล้ว", Toast.LENGTH_SHORT).show();
-
-                finish();
-            } else {
-            //False สั่งไม่ได้
-
-                 MyAlertDialog myAlertDialog = new MyAlertDialog();
-                 myAlertDialog.myDialog(this,R.drawable.icon_myaccount,
-                    "ไม่สามารถสั่งซื้อได้" , "มีสินค้าอยู่ในตะกร้าแล้ว");
-        }*/
     } //clickOrderdetail
 
     private void uploadOrder() {

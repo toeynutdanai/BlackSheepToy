@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
                 MyAlertDialog myAlertDialog = new MyAlertDialog();
                 myAlertDialog.myDialog(this, R.drawable.icon_myaccount,
-                        "Password False", "Please Try Again Password False");
+                        "Password False", " password ผิด \n กรุณากรอกใหม่ให้ถูกต้องด้วยครับ");
 
             }
 
