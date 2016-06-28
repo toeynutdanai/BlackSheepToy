@@ -34,7 +34,7 @@ public class OrderToy extends AppCompatActivity {
     private String idString, dateString, timeString, receiveNoString, addressString, totalString;
     private TextView nameUserTextView, surnameTextView,
             dateTextView, receiveNoTextView, totalTextView;
-    private String[] userStrings;
+    private String[] userStrings, historyStrings;
     private ListView listView;
     private EditText editText;
 
@@ -62,7 +62,31 @@ public class OrderToy extends AppCompatActivity {
         createListView();
 
 
+
+
     }   // Main Method
+
+    private void updateHistory() {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE", null);
+        cursor.moveToFirst();
+
+        historyStrings = new String[cursor.getColumnCount()];
+        for (int n = 0; n < cursor.getCount(); n++) {
+            for (int i=0;i<cursor.getColumnCount();i++) {
+                historyStrings[i] = cursor.getString(i);
+            }
+            MyManage myManage = new MyManage(this);
+            myManage.addHistory(receiveNoString, idString, dateString, userStrings[1], userStrings[2], addressString,
+                    historyStrings[4], historyStrings[5], historyStrings[6], totalString, "รอชำระ");
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+    }
 
     private void findReceiveNo() {
 
@@ -202,6 +226,7 @@ public class OrderToy extends AppCompatActivity {
         } else {
             //Have Address
             checkProduct();
+            updateHistory();
             uploadOrderToServer();
             Intent intent = new Intent(OrderToy.this, HowToOrder.class);
             intent.putExtra("ID_User", idString);

@@ -2,6 +2,7 @@ package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,25 +47,29 @@ public class ToyDetailAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup parent) {
+    public View getView(int i, View view, ViewGroup viewGroup) {
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.
                 LAYOUT_INFLATER_SERVICE);
-        View view1 = layoutInflater.inflate(R.layout.toy_listview, parent, false);
+        View view1 = layoutInflater.inflate(R.layout.order_detail_listview, viewGroup, false);
 
         TextView productTextView = (TextView) view1.findViewById(R.id.textView57);
-        TextView priceTextView = (TextView) view1.findViewById(R.id.textView58);
-        TextView vatTextView = (TextView) view1.findViewById(R.id.textView59);
-        TextView shippingTextView = (TextView) view1.findViewById(R.id.textView60);
-        TextView pieceTextView = (TextView) view1.findViewById(R.id.textView61);
-        TextView netTextView = (TextView) view1.findViewById(R.id.textView62);
-
         productTextView.setText(productStr[i]);
+        TextView priceTextView = (TextView) view1.findViewById(R.id.textView58);
         priceTextView.setText(priceStr[i]);
+        TextView vatTextView = (TextView) view1.findViewById(R.id.textView59);
         vatTextView.setText(vatStr[i]);
+        TextView shippingTextView = (TextView) view1.findViewById(R.id.textView60);
         shippingTextView.setText(shippingStr[i]);
+        TextView pieceTextView = (TextView) view1.findViewById(R.id.textView61);
         pieceTextView.setText(pieceStr[i]);
+        TextView netTextView = (TextView) view1.findViewById(R.id.textView62);
         netTextView.setText(netStr[i]);
+
+        Log.d("iAdapter", Integer.toString(i));
+        Log.d("ProductString Adaoter", productStr[0]);
+
+
 
         return view1;
     }

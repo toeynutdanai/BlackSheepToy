@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,7 +29,7 @@ public class OrderDetail extends AppCompatActivity {
 
         showView();
 
-        //createListview();
+        createListview();
     }
 
     private void createListview() {
@@ -36,8 +37,8 @@ public class OrderDetail extends AppCompatActivity {
         //Read All historyTABLE
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM historyTABLE WHERE IDUser ="
-                + "'" + strId + "'", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM historyTABLE WHERE Ref ="
+                + "'" + refStr + "'", null);
         cursor.moveToFirst();
 
         int count = cursor.getCount();
@@ -64,12 +65,12 @@ public class OrderDetail extends AppCompatActivity {
             Log.d("netStr ==> ", netStr[i]);
             Log.d("vatStr ==> ", vatStr1);
             Float Vat = Integer.parseInt(netStr[i]) * Float.parseFloat(vatStr1);
-            vatStr[i] = String.valueOf(Vat);
+            vatStr[i] = String.valueOf(Math.round(Vat));
             Log.d("Vat ==> ", vatStr[i]);
             shippingStr[i] = cursor1.getString(cursor1.getColumnIndex(MyManage.column_Shipping));
-            Float priceOri = Integer.parseInt(netStr[i]) - Integer.parseInt(shippingStr[i])
-                    - Vat;
-            priceStr[i] = String.valueOf(priceOri);
+            int priceOri = Integer.parseInt(netStr[i]) - Integer.parseInt(shippingStr[i])
+                    - Math.round(Vat);
+            priceStr[i] = Integer.toString(priceOri);
 
             cursor.moveToNext();
             cursor1.close();
@@ -120,6 +121,12 @@ public class OrderDetail extends AppCompatActivity {
         addressStr = getIntent().getStringExtra("Address");
         statusStr = getIntent().getStringExtra("Status");
         totalStr = getIntent().getStringExtra("Total");
+
+    }
+
+    public void onclickOk(View view) {
+
+        finish();
 
     }
 
