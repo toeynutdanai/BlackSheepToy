@@ -68,8 +68,8 @@ public class ToyAdapter extends BaseAdapter {
 
         nameTextView.setText(nameStrings[i]);
         brandTextView.setText("Brand : " + brandStrings[i]);
-        priceTextView.setText("Price : " + priceStrings[i]);
-        stockTextView.setText("Stock : " + stockStrings[i]);
+        priceTextView.setText("Price : " + priceStrings[i] + " บาท");
+        stockTextView.setText("Stock : " + stockStrings[i]+ " ชิ้น");
         if (usedStrings[i].matches("1")) {
             usedTextView.setText("Status : สินค้าใหม่ ");
         } else {

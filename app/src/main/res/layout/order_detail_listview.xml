@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView61"
+            android:id="@+id/textView62"
             android:textSize="@dimen/h3"
             android:layout_margin="5dp"
             android:textColor="@color/colorblack" />
@@ -92,10 +92,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView62"
+            android:id="@+id/textView61"
             android:textSize="@dimen/h3"
             android:layout_margin="5dp"
             android:textColor="@color/colorblack" />
+
     </LinearLayout>
 
     <LinearLayout

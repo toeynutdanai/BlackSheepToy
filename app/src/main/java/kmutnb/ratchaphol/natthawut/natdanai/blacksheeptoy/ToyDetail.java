@@ -125,9 +125,9 @@ public class ToyDetail extends AppCompatActivity {
 
         nameTextView.setText(nameString);
         brandTextView.setText(brandString);
-        priceTextView.setText(priceString);
+        priceTextView.setText(priceString + " บาท");
         usedTextView.setText(findUsed(usedString));
-        stockTextView.setText(stockString);
+        stockTextView.setText(stockString + " ชิ้น");
         detailTextView.setText(detailString);
 
 

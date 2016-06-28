@@ -66,7 +66,7 @@ public class ToyDetailAdapter extends BaseAdapter {
         TextView shippingTextView = (TextView) view1.findViewById(R.id.textView60);
         shippingTextView.setText("Shipping : "+shippingStr[i]+" บาท");
         TextView pieceTextView = (TextView) view1.findViewById(R.id.textView61);
-        pieceTextView.setText("Piece : " + pieceStr[i]+" ชิ้น");
+        pieceTextView.setText("จำนวน : " + pieceStr[i]+" ชิ้น");
         TextView netTextView = (TextView) view1.findViewById(R.id.textView62);
         netTextView.setText("Net : " + netStr[i]+" บาท");
         TextView usedTextView = (TextView) view1.findViewById(R.id.textView65);
