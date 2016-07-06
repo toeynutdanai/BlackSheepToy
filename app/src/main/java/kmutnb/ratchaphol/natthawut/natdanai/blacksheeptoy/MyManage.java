@@ -68,18 +68,14 @@ public class MyManage {
     public static final String colunm_Date = "Date";
     public static final String colunm_Product = "Product";
     public static final String colunm_SentTo = "Sent_To";
-    //public static final String column_Piece = "Piece";
-    //public static final String column_Total = "Total";
+
 
     public static final String history_table = "historyTABLE";
     public static final String column_Ref = "Ref";
     public static final String column_IDuser = "IDUser";
     public static final String column_Date = "Date";
-    //public static final String column_Name = "Name";
-    //public static final String column_Surname = "Surname";
     public static final String column_Address = "Address";
     public static final String column_Product = "Product";
-    //public static final String column_Price = "Price";
     public static final String column_Piece = "Piece";
     public static final String column_Total = "Total";
     public static final String column_Status = "Status";

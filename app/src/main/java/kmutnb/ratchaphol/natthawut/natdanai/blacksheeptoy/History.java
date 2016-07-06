@@ -39,15 +39,12 @@ public class History extends AppCompatActivity {
 
 
         int count = cursor.getCount();
-        Log.d("Countเดิมนะ", Integer.toString(count));
         String[] Bill = new String[count];
 
         for (int i = 0; i < cursor.getCount(); i++ ) {
             Bill[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Ref));
-            Log.d("Bill", Bill[0]);
             if (i > 1 && Bill[i].matches(Bill[i - 1])) {
                 count--;
-                Log.d("Countนะ", Integer.toString(count));
                 cursor.moveToNext();
 
             } else {
@@ -69,12 +66,10 @@ public class History extends AppCompatActivity {
         final String[] Total = new String[count];
         final String[] Status = new String[count];
 
-        Log.d("Count ==>", Integer.toString(count));
+
 
         for (int i = 0; i < count;) {
-            Log.d("iนะ", Integer.toString(i));
             Ref[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Ref));
-            Log.d("ErrorArai", Ref[i]);
             if (i > 1 && Ref[i].matches(Ref[i - 1])) {
                 cursor.moveToNext();
 
@@ -85,7 +80,6 @@ public class History extends AppCompatActivity {
                 Surname[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Surname));
                 Address[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Address));
                 Product[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Product));
-                Log.d("Product", Product[i]);
                 Price[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Price));
                 Piece[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Piece));
                 Total[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_Total));

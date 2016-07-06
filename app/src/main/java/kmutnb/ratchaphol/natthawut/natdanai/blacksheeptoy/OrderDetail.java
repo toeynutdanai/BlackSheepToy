@@ -92,8 +92,6 @@ public class OrderDetail extends AppCompatActivity {
 
         cursor.close();
 
-        Log.d("ProductStr ==>", productStr[0]);
-
         ToyDetailAdapter toyDetailAdapter = new ToyDetailAdapter(this, productStr,
                 priceStr, vatStr, shippingStr, pieceStr, netStr, usedStr, allStr);
 

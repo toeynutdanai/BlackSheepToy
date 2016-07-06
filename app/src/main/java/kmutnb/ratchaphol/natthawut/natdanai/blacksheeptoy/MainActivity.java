@@ -161,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONArray jsonArray = new JSONArray(strJSON);
 
-                Log.d("jsonArrayEiEi", Integer.toString(jsonArray.length()));
 
                 for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -190,9 +189,7 @@ public class MainActivity extends AppCompatActivity {
                             String strStock = jsonObject.getString(MyManage.column_Stock);
                             String strUsed = jsonObject.getString(MyManage.column_Used);
                             String strVat = jsonObject.getString(MyManage.column_Vat);
-                            Log.d("Vat ==>", strVat);
                             String strShipping = jsonObject.getString(MyManage.column_Shipping);
-                            Log.d("Shipping ==>", strShipping);
                             String strDetail = jsonObject.getString(MyManage.column_Detail);
                             String strImage1 = jsonObject.getString(MyManage.column_Image1);
                             String strImage2 = jsonObject.getString(MyManage.column_Image2);

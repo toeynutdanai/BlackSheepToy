@@ -48,6 +48,62 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:id="@+id/button14"
+                android:layout_weight="1"
+                android:onClick="clickAll"
+                android:textStyle="bold"
+                android:background="#a3ffffff" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bandai"
+                android:id="@+id/button15"
+                android:layout_weight="1"
+                android:onClick="clickBandai"
+                android:textStyle="bold"
+                android:background="#e3000000"
+                android:textColor="#fefefe" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Banpresto"
+                android:id="@+id/button16"
+                android:layout_weight="1"
+                android:onClick="clickBanpresto"
+                android:textStyle="bold"
+                android:background="#e3000000"
+                android:textColor="#fefefe"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Megahouse"
+                android:id="@+id/button17"
+                android:layout_weight="1"
+                android:onClick="clickMegahouse"
+                android:textStyle="bold"
+                android:background="#e3000000"
+                android:textColor="#fefefe" />
+        </LinearLayout>
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

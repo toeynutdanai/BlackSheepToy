@@ -53,8 +53,6 @@ public class ToyDetail extends AppCompatActivity {
         //Change Image
         changeImage(imageStrings[0]);
 
-
-
         //touchscreen
         touchScreen();
 
@@ -129,9 +127,6 @@ public class ToyDetail extends AppCompatActivity {
         usedTextView.setText(findUsed(usedString));
         stockTextView.setText(stockString + " ชิ้น");
         detailTextView.setText(detailString);
-
-
-
 
     }//ShowView
 

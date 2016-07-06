@@ -71,14 +71,8 @@ public class ToyDetailAdapter extends BaseAdapter {
         netTextView.setText("Net : " + netStr[i]+" บาท");
         TextView usedTextView = (TextView) view1.findViewById(R.id.textView65);
         usedTextView.setText(usedStr[i]);
-
         TextView allTextView = (TextView) view1.findViewById(R.id.textView66);
         allTextView.setText("รวมทั้งสิ้น :" + allStr[i] +" บาท");
-
-        Log.d("iAdapter", Integer.toString(i));
-        Log.d("ProductString Adaoter", productStr[0]);
-
-
 
         return view1;
     }
