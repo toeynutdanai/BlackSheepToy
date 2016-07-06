@@ -100,10 +100,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "ยินดีต้อนรับ คุณ " + cursor.getString(1),
                         Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(MainActivity.this, ToyListView.class);
-                intent.putExtra("ID_User", cursor.getString(0));
-                startActivity(intent);
-                finish();
+                if (cursor.getString(0).matches("40")) {
+                    Intent intent = new Intent(MainActivity.this, MainAdmin.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(MainActivity.this, ToyListView.class);
+                    intent.putExtra("ID_User", cursor.getString(0));
+                    startActivity(intent);
+                    finish();
+                }
+
 
             } else {
 
