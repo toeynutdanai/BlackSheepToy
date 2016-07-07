@@ -109,7 +109,8 @@ public class OrderAdmin extends AppCompatActivity {
     }
 
     public void clickBack(View view) {
-        finish();
+
+        startActivity(new Intent(OrderAdmin.this, MainAdmin.class));
     }
 
 

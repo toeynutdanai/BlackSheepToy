@@ -162,4 +162,8 @@ public class EditProductAdmin extends AppCompatActivity {
 
 
     }
+
+    public void clickCancel(View view) {
+        startActivity(new Intent(EditProductAdmin.this, UpdateProductAdmin.class));
+    }
 }

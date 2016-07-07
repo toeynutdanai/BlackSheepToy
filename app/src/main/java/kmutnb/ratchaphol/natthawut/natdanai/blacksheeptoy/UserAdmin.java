@@ -1,13 +1,26 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 
 public class UserAdmin extends AppCompatActivity {
 
@@ -53,7 +66,96 @@ public class UserAdmin extends AppCompatActivity {
                 nameStrings, surnameStrings, emailStrings, phoneStrings);
 
         listView.setAdapter(userAdminAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.
+                                database_name,
+                        MODE_PRIVATE, null);
+                final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE",
+                        null);
+                cursor.moveToFirst();
+
+                cursor.moveToPosition(i);
+
+                int intID = Integer.parseInt(cursor.getString(0));
+                final String User = cursor.getString(4);
+
+                AlertDialog.Builder confirmDelete = new AlertDialog.Builder(UserAdmin.this);
+                confirmDelete.setTitle("ต้องการลบจริงใช่มั้ย?");
+                confirmDelete.setIcon(R.drawable.danger);
+                confirmDelete.setMessage("ต้องการลบ User :" + User + " ใช่ไหม");
+                confirmDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        int intID = Integer.parseInt(cursor.getString(0));
+                        sqLiteDatabase.delete("userTABLE", "_id = " + intID, null);
+
+                        //SQL
+                        String urlUpdate = "http://swiftcodingthai.com/sheep/php_delete_user.php";
+                        OkHttpClient okHttpClient = new OkHttpClient();
+                        RequestBody requestBody = new FormEncodingBuilder()
+                                .add("isAdd", "true")
+                                .add("User", User)
+                                .build();
+                        Request.Builder builder = new Request.Builder();
+                        Request request = builder.url(urlUpdate).post(requestBody).build();
+                        Call call = okHttpClient.newCall(request);
+                        call.enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Request request, IOException e) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Response response) throws IOException {
+
+                            }
+                        });
+
+                        createListview();
+                        dialog.dismiss();
+                    }
+                });
+
+                confirmDelete.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                confirmDelete.show();
+
+
+
+
+            }   // onItem
+        });
+
+    }
+
+    private void confirmDelete() {
+        AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
+        confirmDelete.setTitle("ต้องการลบจริงใช่มั้ย?");
+        confirmDelete.setIcon(R.drawable.danger);
+        confirmDelete.setMessage("ต้องการลบ User นี้ใช่ไหม");
+        confirmDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        confirmDelete.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        confirmDelete.show();
     }
 
     public void cilckBack(View view) {

@@ -78,4 +78,8 @@ public class UpdateProductAdmin extends AppCompatActivity {
             } //onItemClick
         });
     }//Create Listview
+
+    public void clickBackUpdateProduct(View view) {
+        startActivity(new Intent(UpdateProductAdmin.this, ProductAdmin.class));
+    }
 }

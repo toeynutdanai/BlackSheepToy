@@ -41,7 +41,8 @@
         android:textSize="@dimen/h1"
         android:layout_marginTop="85dp"
         android:layout_below="@+id/button15"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="clickInsertProduct" />
 
     <Button
         android:layout_width="match_parent"
@@ -54,7 +55,8 @@
         android:layout_weight="3"
         android:textSize="@dimen/h2"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="clickBackProduct" />
 
     <TextView
         android:layout_width="wrap_content"

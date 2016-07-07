@@ -16,4 +16,12 @@ public class ProductAdmin extends AppCompatActivity {
     public void clickUpdate(View view) {
         startActivity(new Intent(ProductAdmin.this, UpdateProductAdmin.class));
     }
+
+    public void clickBackProduct(View view) {
+        startActivity(new Intent(ProductAdmin.this, MainAdmin.class));
+    }
+
+    public void clickInsertProduct(View view) {
+        startActivity(new Intent(ProductAdmin.this, InsertProduct.class));
+    }
 }
