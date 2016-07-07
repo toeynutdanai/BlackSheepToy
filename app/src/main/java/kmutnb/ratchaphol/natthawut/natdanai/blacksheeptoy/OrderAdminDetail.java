@@ -1,5 +1,8 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +13,17 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class OrderDetail extends AppCompatActivity {
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+
+public class OrderAdminDetail extends AppCompatActivity {
 
     //Explicit
     private String strId ,dateStr, refStr, nameStr, surnameStr, addressStr, statusStr, totalStr;
@@ -22,7 +35,7 @@ public class OrderDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_detail);
+        setContentView(R.layout.activity_order_admin_detail);
 
         bindWidget();
 
@@ -122,7 +135,6 @@ public class OrderDetail extends AppCompatActivity {
     }
 
     private void recieveValue() {
-        strId = getIntent().getStringExtra("ID_User");
         refStr = getIntent().getStringExtra("Ref");
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
@@ -131,7 +143,6 @@ public class OrderDetail extends AppCompatActivity {
         cursor.moveToFirst();
 
         dateStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Date));
-        Log.d("date == >", dateStr);
         nameStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Name));
         surnameStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Surname));
         addressStr = cursor.getString(cursor.getColumnIndex(MyManage.column_Address));
@@ -145,13 +156,87 @@ public class OrderDetail extends AppCompatActivity {
 
     }
 
-    public void onclickOk(View view) {
+    public void clickOK(View view) {
+        startActivity(new Intent(OrderAdminDetail.this, OrderAdmin.class));
+    }
 
-        Intent intent = new Intent(OrderDetail.this, History.class);
-        intent.putExtra("ID_User", strId);
-        startActivity(intent);
+    public void clickUpdate(View view) {
+        final CharSequence[] statusCharSequence = {"รอชำระ","โอนเงินแล้ว","ส่งเรียบร้อยแล้ว"};
+        AlertDialog.Builder choiceAlert = new AlertDialog.Builder(this);
+        choiceAlert.setTitle("ต้องการสั่งกี่ชิ้น");
+        choiceAlert.setIcon(R.drawable.icon_myaccount);
+        choiceAlert.setSingleChoiceItems(statusCharSequence, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                statusStr = (String) statusCharSequence[i];
+            }
+        });
+        choiceAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                statusTextView.setText(statusStr);
+                updateStatus();
+            }
+        });
+        choiceAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+
+            }
+        });
+
+        choiceAlert.show();
+
+
+
+
 
     }
 
+    private void updateStatus() {
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
 
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM historyTABLE WHERE Ref = " + "'" + refStr
+                + "'", null);
+        cursor.moveToFirst();
+        int count = cursor.getCount();
+
+        for (int i = 0; i < count; i++) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Status", statusStr);
+
+            sqLiteDatabase.update("historyTABLE", contentValues, "Ref =" +
+                    "'" + refStr + "'", null);
+
+        }//for
+
+        //Update To SQL
+        String urlUpdate = "http://swiftcodingthai.com/sheep/php_update_status.php";
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody requestBody = new FormEncodingBuilder()
+                .add("isAdd", "true")
+                .add("Ref", refStr)
+                .add("Status", statusStr)
+                .build();
+        Request.Builder builder = new Request.Builder();
+        Request request = builder.url(urlUpdate).post(requestBody).build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+
+            }
+        });
+
+
+
+    }
 }

@@ -7,72 +7,62 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy.Main_Admin"
-    android:background="@drawable/bgblue"
-    android:clickable="false">
+    tools:context="kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy.product_admin"
+    android:background="@drawable/bgblue">
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button10"
+        android:id="@+id/button15"
         android:layout_weight="1"
         android:nestedScrollingEnabled="false"
-        android:background="#030303"
+        android:background="#fbfafa"
         android:longClickable="false"
-        android:text="Product"
-        android:onClick="clickProduct"
+        android:text="update"
         android:textStyle="bold"
-        android:textColor="#ffffff"
+        android:textColor="#060606"
         android:textSize="@dimen/h1"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button11"
-        android:layout_weight="1"
-        android:nestedScrollingEnabled="false"
-        android:background="#030303"
-        android:longClickable="false"
-        android:text="User"
-        android:onClick="clickUser"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/h1"
+        android:layout_marginTop="151dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="98dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button13"
+        android:id="@+id/button16"
         android:layout_weight="1"
         android:nestedScrollingEnabled="false"
-        android:background="#030303"
+        android:background="#fefefe"
         android:longClickable="false"
-        android:text="Order"
-        android:onClick="clickOrder"
+        android:text="insert"
+        android:textStyle="bold"
+        android:textColor="#050505"
+        android:textSize="@dimen/h1"
+        android:layout_marginTop="85dp"
+        android:layout_below="@+id/button15"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:id="@+id/button17"
+        android:background="#030303"
         android:textStyle="bold"
         android:textColor="#ffffff"
-        android:textSize="@dimen/h1"
-        android:layout_below="@+id/button10"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="96dp" />
+        android:layout_weight="3"
+        android:textSize="@dimen/h2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin Management"
-        android:id="@+id/textView51"
+        android:text="Product"
+        android:id="@+id/textView52"
         android:textColor="@color/colorblack"
         android:textStyle="bold"
         android:textSize="@dimen/h1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
 </RelativeLayout>

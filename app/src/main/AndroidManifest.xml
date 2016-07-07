@@ -41,7 +41,10 @@
             android:name=".OrderDetail"
             android:screenOrientation="portrait" />
         <activity android:name=".MainAdmin" />
-        <activity android:name=".UserAdmin"></activity>
+        <activity android:name=".UserAdmin" />
+        <activity android:name=".ProductAdmin" />
+        <activity android:name=".OrderAdmin" />
+        <activity android:name=".OrderAdminDetail"></activity>
     </application>
 
 </manifest>

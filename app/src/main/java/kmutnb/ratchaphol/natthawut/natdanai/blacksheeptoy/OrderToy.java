@@ -252,7 +252,6 @@ public class OrderToy extends AppCompatActivity {
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderTABLE ", null);
         cursor.moveToFirst();
         int count = cursor.getCount();
-        Log.i("Count order", Integer.toString(count));
         String[] NameProduct = new String[count];
         String[] Amount = new String[count];
 
@@ -261,26 +260,19 @@ public class OrderToy extends AppCompatActivity {
             NameProduct[i] = cursor.getString(cursor.getColumnIndex("Product"));
             Amount[i] = cursor.getString(cursor.getColumnIndex("Piece"));
             cursor.moveToNext();
-            Log.i("NameProduct/11", NameProduct[i]);
         }//for รับค่า NameProduct
         cursor.close();
 
         for (int i = 0; i< count; i++) {
-            Log.i("Namestring[0]", NameProduct[0]);
             Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM productTABLE WHERE Name = " + "'" + NameProduct[i] + "'", null);
             cursor1.moveToFirst();
 
             int check = cursor1.getCount();
-            Log.i("check", Integer.toString(check));
 
 
             String Stock = cursor1.getString(cursor1.getColumnIndex("Stock"));
 
             int Stocknow = Integer.parseInt(Stock) - Integer.parseInt(Amount[i]);
-
-            Log.i("Stock", Stock);
-            Log.i("Stocknow", Integer.toString(Stocknow));
-
 
             ContentValues contentValues = new ContentValues();
             contentValues.put("Stock", Stocknow);
