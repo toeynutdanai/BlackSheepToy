@@ -206,12 +206,27 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="142dp"
             android:id="@+id/listView4"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="70dp" />
+            android:layout_marginBottom="70dp"
+            android:layout_weight="0.27" />
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Order"
+        android:id="@+id/button24"
+        android:layout_marginBottom="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/colorblack"
+        android:textStyle="bold"
+        android:textSize="@dimen/h2"
+        android:background="#d8ff0000"
+        android:onClick="clickDeleteOrder" />
 
     <LinearLayout
         android:orientation="horizontal"

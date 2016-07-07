@@ -239,4 +239,56 @@ public class OrderAdminDetail extends AppCompatActivity {
 
 
     }
+
+    public void clickDeleteOrder(View view) {
+        final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.
+                        database_name,
+                MODE_PRIVATE, null);
+
+        AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
+        confirmDelete.setTitle("ต้องการลบ Order จริงใช่มั้ย?");
+        confirmDelete.setIcon(R.drawable.danger);
+        confirmDelete.setMessage("ต้องการลบ ใบเสร็จ :" + refStr + " ใช่ไหม");
+        confirmDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                sqLiteDatabase.delete("historyTABLE", "Ref = " + "'" + refStr + "'", null);
+
+                //SQL
+                String urlUpdate = "http://swiftcodingthai.com/sheep/php_delete_order.php";
+                OkHttpClient okHttpClient = new OkHttpClient();
+                RequestBody requestBody = new FormEncodingBuilder()
+                        .add("isAdd", "true")
+                        .add("Ref", refStr)
+                        .build();
+                Request.Builder builder = new Request.Builder();
+                Request request = builder.url(urlUpdate).post(requestBody).build();
+                Call call = okHttpClient.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Request request, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Response response) throws IOException {
+
+                    }
+                });
+
+                dialog.dismiss();
+                startActivity(new Intent(OrderAdminDetail.this, OrderAdmin.class));
+            }
+        });
+
+        confirmDelete.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        confirmDelete.show();
+
+    }
 }
