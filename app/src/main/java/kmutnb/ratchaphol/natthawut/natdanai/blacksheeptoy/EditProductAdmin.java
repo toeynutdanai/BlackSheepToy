@@ -1,6 +1,8 @@
 package kmutnb.ratchaphol.natthawut.natdanai.blacksheeptoy;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -162,6 +164,62 @@ public class EditProductAdmin extends AppCompatActivity {
 
 
     }
+
+    public void clickDeleteProduct(View view) {
+        final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.
+                        database_name,
+                MODE_PRIVATE, null);
+
+        AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
+        confirmDelete.setTitle("ต้องการลบสินค้าจริงใช่มั้ย?");
+        confirmDelete.setIcon(R.drawable.danger);
+        confirmDelete.setMessage("ต้องการลบ User :" + nameString1 + " ใช่ไหม");
+        confirmDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                sqLiteDatabase.delete("productTABLE", "Name = " + "'" + nameString1 + "'", null);
+
+                //SQL
+                String urlUpdate = "http://swiftcodingthai.com/sheep/php_delete_product.php";
+                OkHttpClient okHttpClient = new OkHttpClient();
+                RequestBody requestBody = new FormEncodingBuilder()
+                        .add("isAdd", "true")
+                        .add("Name", nameString1)
+                        .build();
+                Request.Builder builder = new Request.Builder();
+                Request request = builder.url(urlUpdate).post(requestBody).build();
+                Call call = okHttpClient.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Request request, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Response response) throws IOException {
+
+                    }
+                });
+
+                dialog.dismiss();
+                startActivity(new Intent(EditProductAdmin.this, UpdateProductAdmin.class));
+            }
+        });
+
+        confirmDelete.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        confirmDelete.show();
+
+
+
+
+    }
+
 
     public void clickCancel(View view) {
         startActivity(new Intent(EditProductAdmin.this, UpdateProductAdmin.class));
