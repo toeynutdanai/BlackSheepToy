@@ -44,7 +44,9 @@
         <activity android:name=".UserAdmin" />
         <activity android:name=".ProductAdmin" />
         <activity android:name=".OrderAdmin" />
-        <activity android:name=".OrderAdminDetail"></activity>
+        <activity android:name=".OrderAdminDetail" />
+        <activity android:name=".UpdateProductAdmin" />
+        <activity android:name=".EditProductAdmin"></activity>
     </application>
 
 </manifest>

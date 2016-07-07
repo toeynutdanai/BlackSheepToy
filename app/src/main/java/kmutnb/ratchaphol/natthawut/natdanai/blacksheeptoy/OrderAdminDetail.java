@@ -163,7 +163,7 @@ public class OrderAdminDetail extends AppCompatActivity {
     public void clickUpdate(View view) {
         final CharSequence[] statusCharSequence = {"รอชำระ","โอนเงินแล้ว","ส่งเรียบร้อยแล้ว"};
         AlertDialog.Builder choiceAlert = new AlertDialog.Builder(this);
-        choiceAlert.setTitle("ต้องการสั่งกี่ชิ้น");
+        choiceAlert.setTitle("สถานะของบิล");
         choiceAlert.setIcon(R.drawable.icon_myaccount);
         choiceAlert.setSingleChoiceItems(statusCharSequence, 0, new DialogInterface.OnClickListener() {
             @Override
