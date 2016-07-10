@@ -26,7 +26,8 @@ import java.io.IOException;
 public class OrderAdminDetail extends AppCompatActivity {
 
     //Explicit
-    private String strId ,dateStr, refStr, nameStr, surnameStr, addressStr, statusStr, totalStr;
+    private String strId ,dateStr, refStr, nameStr, surnameStr, addressStr, statusStr, totalStr,
+            adminStr, titleStr;
     private TextView dateTextView, refTextView, nameTextView, surnameTextView, addressTextView,
             statusTextView, totalTextView;
 
@@ -136,6 +137,8 @@ public class OrderAdminDetail extends AppCompatActivity {
 
     private void recieveValue() {
         refStr = getIntent().getStringExtra("Ref");
+        adminStr = getIntent().getStringExtra("Admin");
+        titleStr = getIntent().getStringExtra("Title");
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM historyTABLE WHERE Ref ="
@@ -246,14 +249,16 @@ public class OrderAdminDetail extends AppCompatActivity {
                 MODE_PRIVATE, null);
 
         AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
-        confirmDelete.setTitle("ต้องการลบ Order จริงใช่มั้ย?");
+        confirmDelete.setTitle(titleStr);
         confirmDelete.setIcon(R.drawable.danger);
-        confirmDelete.setMessage("ต้องการลบ ใบเสร็จ :" + refStr + " ใช่ไหม");
+        confirmDelete.setMessage("ต้องการอก้ไขสถานะ ใบเสร็จ :" + refStr + " ใช่ไหม");
         confirmDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                sqLiteDatabase.delete("historyTABLE", "Ref = " + "'" + refStr + "'", null);
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("Admin", adminStr);
+                sqLiteDatabase.update("historyTABLE",contentValues, "Ref = " + "'" + refStr + "'", null);
 
                 //SQL
                 String urlUpdate = "http://swiftcodingthai.com/sheep/php_delete_order.php";
@@ -261,6 +266,7 @@ public class OrderAdminDetail extends AppCompatActivity {
                 RequestBody requestBody = new FormEncodingBuilder()
                         .add("isAdd", "true")
                         .add("Ref", refStr)
+                        .add("Admin", adminStr)
                         .build();
                 Request.Builder builder = new Request.Builder();
                 Request request = builder.url(urlUpdate).post(requestBody).build();

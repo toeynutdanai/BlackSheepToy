@@ -99,6 +99,8 @@ public class OrderAdmin extends AppCompatActivity {
                 Intent intent = new Intent(OrderAdmin.this, OrderAdminDetail.class);
 
                 intent.putExtra("Ref", Ref[position]);
+                intent.putExtra("Admin", "delete");
+                intent.putExtra("Title", "ต้องการลบบิลนี้ใช่หรือไม่?");
 
                 startActivity(intent);
 
@@ -187,6 +189,8 @@ public class OrderAdmin extends AppCompatActivity {
                 Intent intent = new Intent(OrderAdmin.this, OrderAdminDetail.class);
 
                 intent.putExtra("Ref", Ref[position]);
+                intent.putExtra("Admin", "delete");
+                intent.putExtra("Title", "ต้องการลบบิลนี้ใช่หรือไม่?");
 
                 startActivity(intent);
 
@@ -273,6 +277,8 @@ public class OrderAdmin extends AppCompatActivity {
                 Intent intent = new Intent(OrderAdmin.this, OrderAdminDetail.class);
 
                 intent.putExtra("Ref", Ref[position]);
+                intent.putExtra("Admin", "available");
+                intent.putExtra("Title", "ต้องการปลดบลอคบิลนี้ใช่หรือไม่?");
 
                 startActivity(intent);
 
@@ -360,6 +366,9 @@ public class OrderAdmin extends AppCompatActivity {
                 Intent intent = new Intent(OrderAdmin.this, OrderAdminDetail.class);
 
                 intent.putExtra("Ref", Ref[position]);
+                intent.putExtra("Admin", "delete");
+                intent.putExtra("Title", "ต้องการลบบิลนี้ใช่หรือไม่?");
+
 
                 startActivity(intent);
 
@@ -448,6 +457,8 @@ public class OrderAdmin extends AppCompatActivity {
                 Intent intent = new Intent(OrderAdmin.this, OrderAdminDetail.class);
 
                 intent.putExtra("Ref", Ref[position]);
+                intent.putExtra("Admin", "delete");
+                intent.putExtra("Title", "ต้องการลบบิลนี้ใช่หรือไม่?");
 
                 startActivity(intent);
 
@@ -535,6 +546,8 @@ public class OrderAdmin extends AppCompatActivity {
                 Intent intent = new Intent(OrderAdmin.this, OrderAdminDetail.class);
 
                 intent.putExtra("Ref", Ref[position]);
+                intent.putExtra("Admin", "delete");
+                intent.putExtra("Title", "ต้องการลบบิลนี้ใช่หรือไม่?");
 
                 startActivity(intent);
 
