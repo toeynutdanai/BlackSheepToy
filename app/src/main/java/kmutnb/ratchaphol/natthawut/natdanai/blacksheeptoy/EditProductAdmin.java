@@ -171,14 +171,17 @@ public class EditProductAdmin extends AppCompatActivity {
                 MODE_PRIVATE, null);
 
         AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
-        confirmDelete.setTitle("ต้องการลบสินค้าจริงใช่มั้ย?");
+        confirmDelete.setTitle("สินค้านี้หมดแล้วใช่มั้ย?");
         confirmDelete.setIcon(R.drawable.danger);
-        confirmDelete.setMessage("ต้องการลบ " + nameString1 + " ใช่ไหม");
+        confirmDelete.setMessage("แน่ใจนะว่า" + nameString1 + " หมดแล้ว");
         confirmDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                sqLiteDatabase.delete("productTABLE", "Name = " + "'" + nameString1 + "'", null);
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("Stock", "0");
+
+                sqLiteDatabase.update("productTABLE", contentValues ,"Name = " + "'" + nameString1 + "'", null);
 
                 //SQL
                 String urlUpdate = "http://swiftcodingthai.com/sheep/php_delete_product.php";
@@ -186,6 +189,7 @@ public class EditProductAdmin extends AppCompatActivity {
                 RequestBody requestBody = new FormEncodingBuilder()
                         .add("isAdd", "true")
                         .add("Name", nameString1)
+                        .add("Stock", "0")
                         .build();
                 Request.Builder builder = new Request.Builder();
                 Request request = builder.url(urlUpdate).post(requestBody).build();

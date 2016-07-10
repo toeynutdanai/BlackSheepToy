@@ -26,9 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView6"
-        android:layout_below="@+id/textView38"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/button20" />
+        android:layout_above="@+id/button20"
+        android:layout_below="@+id/linearLayout15" />
 
     <Button
         android:layout_width="match_parent"
@@ -43,4 +43,74 @@
         android:textSize="@dimen/h2"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView38"
+        android:id="@+id/linearLayout14"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All"
+            android:id="@+id/button25"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+            android:background="#ffffff"
+            android:onClick="clickAllUpdate"
+            android:layout_margin="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low Stock"
+            android:id="@+id/button26"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+            android:background="#e12e2e"
+            android:onClick="clickLowStock"
+            android:layout_margin="1dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/linearLayout14"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout15">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instock"
+            android:id="@+id/button28"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+            android:background="#0d2cf7"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:onClick="clickInstock" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Out of Stock"
+            android:id="@+id/button27"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+            android:background="#8f8b8b"
+            android:onClick="clickOutofStock"
+            android:layout_margin="1dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 </RelativeLayout>

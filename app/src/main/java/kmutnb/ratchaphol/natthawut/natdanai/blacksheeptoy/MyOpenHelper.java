@@ -19,7 +19,8 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "User text," +
             "Password text," +
             "Email text," +
-            "Phone text);";
+            "Phone text," +
+            "AdminUse text);";
 
     private static final String create_product_table = "create table productTABLE (" +
             "_id integer primary key," +
@@ -86,7 +87,8 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "Price text," +
             "Piece text," +
             "Total text," +
-            "Status text);";
+            "Status text," +
+            "Admin text);";
 
 
 

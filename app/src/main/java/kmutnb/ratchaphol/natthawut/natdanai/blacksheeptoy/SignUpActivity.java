@@ -156,6 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
             nameValuePairs.add(new BasicNameValuePair("Password", passwordString ));
             nameValuePairs.add(new BasicNameValuePair("Email", emailString));
             nameValuePairs.add(new BasicNameValuePair("Phone", phoneString));
+            nameValuePairs.add(new BasicNameValuePair("AdminUse", "available"));
 
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost("http://swiftcodingthai.com/sheep/php_add_user.php");

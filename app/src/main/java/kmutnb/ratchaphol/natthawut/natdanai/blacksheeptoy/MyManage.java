@@ -20,6 +20,7 @@ public class MyManage {
     public static final String column_Password = "Password";
     public static final String column_Email = "Email";
     public static final String column_Phone = "Phone";
+    public static final String column_AdminUse = "AdminUse";
 
 
     public static final String product_table = "productTABLE";
@@ -79,6 +80,7 @@ public class MyManage {
     public static final String column_Piece = "Piece";
     public static final String column_Total = "Total";
     public static final String column_Status = "Status";
+    public static final String column_Admin = "Admin";
 
     public MyManage(Context context) {
 
@@ -106,6 +108,7 @@ public class MyManage {
 
 
 
+
         return sqLiteDatabase.insert(order_table, null, contentValues);
     }
 
@@ -119,7 +122,8 @@ public class MyManage {
                           String strPriceHis,
                           String strPiece,
                           String strTotal,
-                          String strStatus) {
+                          String strStatus,
+                           String strAdminHis) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(column_Ref, strbillNo);
         contentValues.put(column_IDuser, strIDUser);
@@ -132,6 +136,7 @@ public class MyManage {
         contentValues.put(column_Piece, strPiece);
         contentValues.put(column_Total, strTotal);
         contentValues.put(column_Status, strStatus);
+        contentValues.put(column_Admin, strAdminHis);
 
         return sqLiteDatabase.insert(history_table, null, contentValues);
     }
@@ -229,7 +234,8 @@ public class MyManage {
                         String strUser,
                         String strPassword,
                         String strEmail,
-                        String strPhone) {
+                        String strPhone,
+                        String strAdminUse) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(column_id, strID);
         contentValues.put(column_Name, strName);
@@ -239,6 +245,8 @@ public class MyManage {
         contentValues.put(column_Password, strPassword);
         contentValues.put(column_Email, strEmail);
         contentValues.put(column_Phone, strPhone);
+        contentValues.put(column_AdminUse, strAdminUse);
+
         return sqLiteDatabase.insert(user_table, null, contentValues);
     }
 

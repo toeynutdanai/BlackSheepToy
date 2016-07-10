@@ -53,7 +53,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete This Product"
+        android:text="Out of Stock"
         android:id="@+id/button23"
         android:layout_above="@+id/button21"
         android:layout_centerHorizontal="true"

@@ -105,10 +105,20 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Intent intent = new Intent(MainActivity.this, ToyListView.class);
-                    intent.putExtra("ID_User", cursor.getString(0));
-                    startActivity(intent);
-                    finish();
+                    if (cursor.getString(8).matches("delete")) {
+                        MyAlertDialog myAlertDialog = new MyAlertDialog();
+                        myAlertDialog.myDialog(this, R.drawable.danger,
+                                "User ของคุณมีปัญหา",
+                                "User ของคุณทำผิดกติกาของเรา \n" +
+                                        "ทางเราจึงลบ User ของคุณ \n" +
+                                        "หากท่านมีอะไรชี้แจงสามารถติดต่อ Admin ผ่านทาง Email ");
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, ToyListView.class);
+                        intent.putExtra("ID_User", cursor.getString(0));
+                        startActivity(intent);
+                        finish();
+                    }
+
                 }
 
 
@@ -183,9 +193,10 @@ public class MainActivity extends AppCompatActivity {
                             String strPassword = jsonObject.getString(MyManage.column_Password);
                             String strEmail = jsonObject.getString(MyManage.column_Email);
                             String strPhone = jsonObject.getString(MyManage.column_Phone);
+                            String strAdminUse = jsonObject.getString(MyManage.column_AdminUse);
 
                             myManage.addUser(strID, strName, strSurname, strIDcard, strUser,
-                                    strPassword, strEmail, strPhone);
+                                    strPassword, strEmail, strPhone, strAdminUse);
 
                             break;
                         case 1:
@@ -258,11 +269,12 @@ public class MainActivity extends AppCompatActivity {
                             String strPiece = jsonObject.getString(MyManage.column_Piece);
                             String strTotal = jsonObject.getString(MyManage.column_Total);
                             String strStatus = jsonObject.getString(MyManage.column_Status);
+                            String strAdmin = jsonObject.getString(MyManage.column_Admin);
 
 
                             myManage.addHistory(strbillNo, strIDuser, strDate, strNameHis,
                                     strSurnameHis, strAddress, strProduct, strPriceHis, strPiece,
-                                    strTotal, strStatus);
+                                    strTotal, strStatus, strAdmin);
 
                             break;
 

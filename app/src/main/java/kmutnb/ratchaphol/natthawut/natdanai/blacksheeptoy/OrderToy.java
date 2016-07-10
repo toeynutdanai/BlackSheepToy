@@ -80,7 +80,7 @@ public class OrderToy extends AppCompatActivity {
             }
             MyManage myManage = new MyManage(this);
             myManage.addHistory(receiveNoString, idString, dateString, userStrings[1], userStrings[2], addressString,
-                    historyStrings[4], historyStrings[5], historyStrings[6], totalString, "รอชำระ");
+                    historyStrings[4], historyStrings[5], historyStrings[6], totalString, "รอชำระ", "available");
             cursor.moveToNext();
         }
 
@@ -344,6 +344,7 @@ public class OrderToy extends AppCompatActivity {
                     .add("Total", totalString)
                     .add("Status", "รอชำระ")
                     .add("IDUser", idString)
+                    .add("Admin", "available")
                     .build();
             Request.Builder builder = new Request.Builder();
             Request request = builder.url(strURL).post(requestBody).build();

@@ -25,10 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView3"
-        android:layout_below="@+id/textView28"
         android:layout_centerHorizontal="true"
         android:background="#64ffffff"
-        android:layout_above="@+id/button12" />
+        android:layout_above="@+id/button12"
+        android:layout_below="@+id/linearLayout16" />
 
     <Button
         android:layout_width="match_parent"
@@ -43,4 +43,35 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/h2" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView28"
+        android:gravity="center_horizontal"
+        android:id="@+id/linearLayout16">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available"
+            android:id="@+id/button29"
+            android:layout_weight="1"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+            android:background="#0000ff"
+            android:onClick="clickAllUser" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete or Ban"
+            android:id="@+id/button30"
+            android:layout_weight="1"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+            android:background="#e30c0c"
+            android:onClick="clickDeleteUser" />
+    </LinearLayout>
 </RelativeLayout>
