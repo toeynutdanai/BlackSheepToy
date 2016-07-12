@@ -173,7 +173,7 @@ public class EditProductAdmin extends AppCompatActivity {
         AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
         confirmDelete.setTitle("สินค้านี้หมดแล้วใช่มั้ย?");
         confirmDelete.setIcon(R.drawable.danger);
-        confirmDelete.setMessage("แน่ใจนะว่า" + nameString1 + " หมดแล้ว");
+        confirmDelete.setMessage("แน่ใจนะว่า " + nameString1 + " หมดแล้ว");
         confirmDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

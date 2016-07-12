@@ -77,7 +77,8 @@ public class UserAdmin extends AppCompatActivity {
                 final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.
                                 database_name,
                         MODE_PRIVATE, null);
-                final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE",
+                final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE " +
+                                "_id != 40 AND AdminUse = 'available'",
                         null);
                 cursor.moveToFirst();
 
@@ -182,7 +183,8 @@ public class UserAdmin extends AppCompatActivity {
                 final SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.
                                 database_name,
                         MODE_PRIVATE, null);
-                final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE",
+                final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE " +
+                                "_id != 40 AND AdminUse = 'available'",
                         null);
                 cursor.moveToFirst();
 

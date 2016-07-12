@@ -251,7 +251,7 @@ public class OrderAdminDetail extends AppCompatActivity {
         AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
         confirmDelete.setTitle(titleStr);
         confirmDelete.setIcon(R.drawable.danger);
-        confirmDelete.setMessage("ต้องการอก้ไขสถานะ ใบเสร็จ :" + refStr + " ใช่ไหม");
+        confirmDelete.setMessage("ต้องการแก้ไขสถานะ ใบเสร็จ :" + refStr + " ใช่ไหม");
         confirmDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
